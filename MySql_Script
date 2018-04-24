@@ -161,7 +161,7 @@ SHOW WARNINGS;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `FanTurDB`.`Eventos` (
   `idEvento` INT NOT NULL,
-  `Descripción` TEXT NULL,
+  `Descripcion` TEXT NULL,
   `Precio` DECIMAL NULL,
   `NroEntrada` INT NULL,
   `Lugar` VARCHAR(45) NULL,
