@@ -1,6 +1,6 @@
-package grupo4.model.dao.interfaces;
+package grupo4.FanTurWEB.model.dao.interfaces;
 
-import grupo4.model.Ubicacion;
+import grupo4.FanTurWEB.model.Ubicacion;
 
 public interface UbicacionDao {
 

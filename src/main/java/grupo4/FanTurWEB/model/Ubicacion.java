@@ -1,7 +1,8 @@
-package grupo4.model;
+package grupo4.FanTurWEB.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Ubicacion {
@@ -9,7 +10,9 @@ public class Ubicacion {
 	@Id
 	private int id;
 	private String calle;
+	@Min(0)
 	private int altura;
+	private String localidad;
 	private String provincia;
 	private String pais;
 	
@@ -17,11 +20,11 @@ public class Ubicacion {
 		
 	}
 	
-	public Ubicacion(int id, String calle, int altura, String provincia, String pais) {
+	public Ubicacion( String calle, int altura, String localidad, String provincia, String pais) {
 		super();
-		this.id = id;
 		this.calle = calle;
 		this.altura = altura;
+		this.localidad = localidad;
 		this.provincia = provincia;
 		this.pais = pais;
 	}
@@ -43,6 +46,12 @@ public class Ubicacion {
 	}
 	public void setAltura(int altura) {
 		this.altura = altura;
+	}
+	public String getLocalidad() {
+		return localidad;
+	}
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
 	}
 	public String getProvincia() {
 		return provincia;

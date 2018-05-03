@@ -1,13 +1,13 @@
-package grupo4.model.dao;
+package grupo4.FanTurWEB.model.dao;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import grupo4.model.Ubicacion;
+import grupo4.FanTurWEB.model.Ubicacion;
 
 @Stateless
-public class UbicacionDao implements grupo4.model.dao.interfaces.UbicacionDao {
+public class UbicacionDao implements grupo4.FanTurWEB.model.dao.interfaces.UbicacionDao {
 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
