@@ -4,11 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Past;
 
 @Entity
 public class Cliente extends User {
+	@Past
 	private Date nacimiento;
 //	private List<Reserva> reservas;
+	
+	public Cliente() {
+		super();
+	}
 
 	public Cliente(String nombre, String apellido, String password, Date nacimiento) {
 		super(nombre, apellido, password);

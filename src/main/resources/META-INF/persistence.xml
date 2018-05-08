@@ -9,7 +9,11 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
 		
-		<class>grupo4.model.Ubicacion</class>
+		<class>grupo4.FanTurWEB.model.Admin</class>
+		<class>grupo4.FanTurWEB.model.Cliente</class>
+		<class>grupo4.FanTurWEB.model.Ubicacion</class>
+		<class>grupo4.FanTurWEB.model.User</class>
+
 		
         <properties>
          	<!-- Properties for Hibernate -->
