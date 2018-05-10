@@ -7,13 +7,18 @@
     
     <persistence-unit name="pu1" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+		<jta-data-source>java:/jboss/datasources/pu1</jta-data-source>
 		
 		<class>grupo4.FanTurWEB.model.Admin</class>
 		<class>grupo4.FanTurWEB.model.Cliente</class>
 		<class>grupo4.FanTurWEB.model.Ubicacion</class>
 		<class>grupo4.FanTurWEB.model.User</class>
-
+		<class>grupo4.FanTurWEB.model.Pasaje</class>
+		<class>grupo4.FanTurWEB.model.Paquete</class>
+		<class>grupo4.FanTurWEB.model.Alojamiento</class>
+		<class>grupo4.FanTurWEB.model.Evento</class>
+		<class>grupo4.FanTurWEB.model.Hotel</class>
+		<class>grupo4.FanTurWEB.model.Reserva</class>
 		
         <properties>
          	<!-- Properties for Hibernate -->
@@ -22,7 +27,8 @@
 			<property name="hibernate.format_sql" value="true" />
             <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
             <property name="hibernate.connection.charSet" value="UTF-8"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+           <!-- property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/ -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 
         </properties>
     </persistence-unit>

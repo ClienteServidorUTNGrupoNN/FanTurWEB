@@ -1,24 +1,32 @@
 package grupo4.FanTurWEB.model;
 
-import java.util.Date;
+import java.util.Date; 
+
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Past;
 
 @Entity
+@Table(name="cliente",schema="fantur")
 public class Cliente extends User {
-	@Past
-	private Date nacimiento;
-//	private List<Reserva> reservas;
 	
-	public Cliente() {
-		super();
-	}
+	@Past
+	@Column(name="nacimiento")
+	private Date nacimiento;
 
-	public Cliente(String nombre, String apellido, String password, Date nacimiento) {
-		super(nombre, apellido, password);
+	@OneToMany(mappedBy="cliente")
+	private List<Reserva> reservas;
+	
+	public Cliente() {super();}
+	
+	public Cliente(String nombre,String apellido,String password, Date nacimiento, List<Reserva> reservas) {
+		super(nombre,apellido,password);
 		this.nacimiento = nacimiento;
+		this.reservas = reservas;
 	}
 
 	public Date getNacimiento() {
@@ -28,15 +36,16 @@ public class Cliente extends User {
 	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
-	
-	/*	
+
 	public List<Reserva> getReservas() {
 		return reservas;
 	}
-	
-	public void addReserva(Reserva reserva) {
-		this.reservas.add(reserva);
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
-	*/
+
+	
+	
 	
 }

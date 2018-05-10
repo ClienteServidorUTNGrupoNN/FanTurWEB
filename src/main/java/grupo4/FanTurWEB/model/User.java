@@ -1,5 +1,6 @@
 package grupo4.FanTurWEB.model;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 public abstract class User {
 
 	@Id
+	@Column(name = "id")
 	private int id;
 	private String nombre;
 	private String apellido;

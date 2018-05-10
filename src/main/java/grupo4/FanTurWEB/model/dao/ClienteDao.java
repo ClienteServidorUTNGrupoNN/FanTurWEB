@@ -15,7 +15,7 @@ import grupo4.FanTurWEB.model.Cliente;
 @Stateless
 public class ClienteDao implements grupo4.FanTurWEB.model.dao.interfaces.ClienteDao {
 
-	@PersistenceContext(name = "pu1")
+	@PersistenceContext(unitName = "pu1")
 	EntityManager em;
 	
 	@Override

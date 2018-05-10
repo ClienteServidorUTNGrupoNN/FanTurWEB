@@ -16,7 +16,7 @@ import grupo4.FanTurWEB.model.Admin;
 @Stateless
 public class AdminDao implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao {
 
-	@PersistenceContext(name = "pu1")
+	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
 	@Override
