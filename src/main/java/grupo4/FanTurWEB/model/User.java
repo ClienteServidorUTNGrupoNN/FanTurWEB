@@ -1,6 +1,8 @@
 package grupo4.FanTurWEB.model;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
@@ -10,7 +12,7 @@ import javax.validation.constraints.Size;
 public abstract class User {
 
 	@Id
-	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private String apellido;

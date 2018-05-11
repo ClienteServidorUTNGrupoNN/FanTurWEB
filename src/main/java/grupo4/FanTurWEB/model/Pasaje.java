@@ -1,9 +1,11 @@
 package grupo4.FanTurWEB.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,32 +16,25 @@ import javax.persistence.Table;
 public class Pasaje {
 
 	@Id
-	@Column(name = "numPasaje")
-	private int numPasaje;
-	@Column(name = "vehiculo")
+	@GeneratedValue
+	private int id;
 	private String vehiculo;
-	@Column(name = "servicio")
 	private String servicio;
-	@Column(name = "fechaPartida")
-	private LocalDate fechaPartida;
+	private Date partida;
 	@Column(name = "fechaVuelta")
 	private LocalDate fechaVuelta;
-	@Column(name = "origen")
-	private String origen;
-	@Column(name = "destino")
-	private String destino;
-	@Column(name = "asiento")
+	private Ubicacion origen, destino;
 	private int asiento;
-	@Column(name = "precio")
 	private double precio;
 	@ManyToOne
 	@JoinColumn(name = "idPaquete")
 	private Paquete paquete;
-	public int getNumPasaje() {
-		return numPasaje;
+	
+	public int getId() {
+		return id;
 	}
 	public void setNumPasaje(int numPasaje) {
-		this.numPasaje = numPasaje;
+		this.id = numPasaje;
 	}
 	public String getVehiculo() {
 		return vehiculo;
@@ -53,11 +48,11 @@ public class Pasaje {
 	public void setServicio(String servicio) {
 		this.servicio = servicio;
 	}
-	public LocalDate getFechaPartida() {
-		return fechaPartida;
+	public Date getPartida() {
+		return partida;
 	}
-	public void setFechaPartida(LocalDate fechaPartida) {
-		this.fechaPartida = fechaPartida;
+	public void setFechaPartida(Date partida) {
+		this.partida = partida;
 	}
 	public LocalDate getFechaVuelta() {
 		return fechaVuelta;
@@ -65,16 +60,16 @@ public class Pasaje {
 	public void setFechaVuelta(LocalDate fechaVuelta) {
 		this.fechaVuelta = fechaVuelta;
 	}
-	public String getOrigen() {
+	public Ubicacion getOrigen() {
 		return origen;
 	}
-	public void setOrigen(String origen) {
+	public void setOrigen(Ubicacion origen) {
 		this.origen = origen;
 	}
-	public String getDestino() {
+	public Ubicacion getDestino() {
 		return destino;
 	}
-	public void setDestino(String destino) {
+	public void setDestino(Ubicacion destino) {
 		this.destino = destino;
 	}
 	public int getAsiento() {
@@ -95,12 +90,11 @@ public class Pasaje {
 	public void setPaquete(Paquete paquete) {
 		this.paquete = paquete;
 	}
-	public Pasaje(int numPasaje, String vehiculo, String servicio, LocalDate fechaPartida, LocalDate fechaVuelta,
-			String origen, String destino, int asiento, double precio, Paquete paquete) {
-		this.numPasaje = numPasaje;
+	public Pasaje(String vehiculo, String servicio, Date fechaPartida, LocalDate fechaVuelta,
+			Ubicacion origen, Ubicacion destino, int asiento, double precio, Paquete paquete) {
 		this.vehiculo = vehiculo;
 		this.servicio = servicio;
-		this.fechaPartida = fechaPartida;
+		this.partida = fechaPartida;
 		this.fechaVuelta = fechaVuelta;
 		this.origen = origen;
 		this.destino = destino;
@@ -111,6 +105,4 @@ public class Pasaje {
 	
 	public Pasaje() {}
 
-	
-	
 }

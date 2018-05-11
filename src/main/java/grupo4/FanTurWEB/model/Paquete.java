@@ -18,11 +18,8 @@ import javax.persistence.JoinColumn;
 public class Paquete {
 	
 	@Id
-	@Column(name="idPaquete")
-	private int idPaquete;
-	@Column(name="precio")
+	private int id;
 	private double precio;
-	@Column(name="cantPaquete")
 	private int cantPaquete;
 	@OneToMany(mappedBy="paquete")
 	private List<Pasaje> pasajes;
@@ -37,15 +34,16 @@ public class Paquete {
 	@OneToOne
 	@JoinColumn(name="idReserva")
 	private Reserva reserva;
+	private String autorizado;
 	
 	//private Admin administrador
 		
 	public Paquete() {}
 
-	public Paquete(int idPaquete, double precio, int cantPaquete, List<Pasaje> pasajes, Alojamiento alojamiento,
+	public Paquete(int id, double precio, int cantPaquete, List<Pasaje> pasajes, Alojamiento alojamiento,
 			List<Evento> evento, Reserva reserva) {
 		super();
-		this.idPaquete = idPaquete;
+		this.id = id;
 		this.precio = precio;
 		this.cantPaquete = cantPaquete;
 		this.pasajes = pasajes;
@@ -54,12 +52,12 @@ public class Paquete {
 		this.reserva = reserva;
 	}
 
-	public int getIdPaquete() {
-		return idPaquete;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdPaquete(int idPaquete) {
-		this.idPaquete = idPaquete;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getPrecio() {
@@ -110,6 +108,4 @@ public class Paquete {
 		this.reserva = reserva;
 	}
 
-	
-	
 }

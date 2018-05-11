@@ -4,7 +4,6 @@ import java.util.Date;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,13 +14,14 @@ import javax.validation.constraints.Past;
 public class Cliente extends User {
 	
 	@Past
-	@Column(name="nacimiento")
 	private Date nacimiento;
 
 	@OneToMany(mappedBy="cliente")
 	private List<Reserva> reservas;
 	
-	public Cliente() {super();}
+	public Cliente() {
+		super();
+	}
 	
 	public Cliente(String nombre,String apellido,String password, Date nacimiento, List<Reserva> reservas) {
 		super(nombre,apellido,password);
@@ -45,7 +45,4 @@ public class Cliente extends User {
 		this.reservas = reservas;
 	}
 
-	
-	
-	
 }

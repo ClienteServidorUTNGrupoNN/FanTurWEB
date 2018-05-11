@@ -1,8 +1,7 @@
 package grupo4.FanTurWEB.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,31 +11,20 @@ import javax.persistence.Table;
 public class Evento {
 	
 	@Id
-	@Column(name="nroEvento")
-	private int nroEvento;
-	@Column(name="descripcion")
+	private int id;
 	private String descripcion;
-	@Column(name="precio")
 	private double precio;
-	@Column(name="nroEnt")
 	private int nroEnt;
-	@Column(name="lugar")
-	private String lugar;
-	@Column(name="fecha")
-	private LocalDate fecha;
-	@Column(name="hora")
-	private int hora;
+	private Ubicacion lugar;
+	private Date fecha;
 	
 	
-	public Evento(int nroEvento, String descripcion, double precio, int nroEnt, String lugar, LocalDate fecha,
-			int hora) {
-		this.nroEvento = nroEvento;
+	public Evento(String descripcion, double precio, int nroEnt, Ubicacion lugar, Date fecha) {
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.nroEnt = nroEnt;
 		this.lugar = lugar;
 		this.fecha = fecha;
-		this.hora = hora;
 	}
 
 	
@@ -44,12 +32,8 @@ public class Evento {
 		
 	}
 
-	public int getNroEvento() {
-		return nroEvento;
-	}
-
-	public void setNroEvento(int nroEvento) {
-		this.nroEvento = nroEvento;
+	public int getId() {
+		return id;
 	}
 
 	public String getDescripcion() {
@@ -76,31 +60,20 @@ public class Evento {
 		this.nroEnt = nroEnt;
 	}
 
-	public String getLugar() {
+	public Ubicacion getLugar() {
 		return lugar;
 	}
 
-	public void setLugar(String lugar) {
+	public void setLugar(Ubicacion lugar) {
 		this.lugar = lugar;
 	}
 
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
-	public int getHora() {
-		return hora;
-	}
-
-	public void setHora(int hora) {
-		this.hora = hora;
-	}
-	
-	
-	
 	
 }

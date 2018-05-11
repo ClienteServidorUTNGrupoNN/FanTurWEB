@@ -1,9 +1,10 @@
 package grupo4.FanTurWEB.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,14 +16,13 @@ import javax.persistence.Table;
 public class Reserva {
 	
 	@Id 
-	@Column(name = "idReserva")
-	private int idReserva;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name= "id")
 	private Cliente cliente;
-	private LocalDate fechaRes;
-	private LocalDate fechaPago;
+	private Date fechaReserva, fechaPago;
 	
 	@OneToOne
 	@JoinColumn(name = "idPaquete")
@@ -32,20 +32,19 @@ public class Reserva {
 		
 	}
 
-	public Reserva(int idReserva, Cliente cliente, LocalDate fechaRes, LocalDate fechaPago, Paquete paquete) {
-		this.idReserva = idReserva;
+	public Reserva(Cliente cliente, Date fechaReserva, Date fechaPago, Paquete paquete) {
 		this.cliente = cliente;
-		this.fechaRes = fechaRes;
+		this.fechaReserva = fechaReserva;
 		this.fechaPago = fechaPago;
 		this.paquete = paquete;
 	}
 
-	public int getIdReserva() {
-		return idReserva;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdReserva(int idReserva) {
-		this.idReserva = idReserva;
+	public void setId(int idReserva) {
+		this.id = idReserva;
 	}
 
 	public Cliente getCliente() {
@@ -56,19 +55,19 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 
-	public LocalDate getFechaRes() {
-		return fechaRes;
+	public Date getFechaReserva() {
+		return fechaReserva;
 	}
 
-	public void setFechaRes(LocalDate fechaRes) {
-		this.fechaRes = fechaRes;
+	public void setFechaReserva(Date fechaReserva) {
+		this.fechaReserva = fechaReserva;
 	}
 
-	public LocalDate getFechaPago() {
+	public Date getFechaPago() {
 		return fechaPago;
 	}
 
-	public void setFechaPago(LocalDate fechaPago) {
+	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 
@@ -79,9 +78,5 @@ public class Reserva {
 	public void setPaquete(Paquete paquete) {
 		this.paquete = paquete;
 	}
-	
-	
-	
-	
 	
 }

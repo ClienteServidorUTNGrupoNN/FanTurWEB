@@ -1,7 +1,7 @@
 package grupo4.FanTurWEB.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,11 +12,9 @@ import javax.persistence.Table;
 public class Hotel {
 	
 	@Id
-	@Column(name = "idHotel")
-	private int idHotel;
-	@Column(name = "nombre")
+	@GeneratedValue
+	private int id;
 	private String nombre;
-	@Column(name = "contacto")
 	private String contacto;
 	@ManyToOne
 	@JoinColumn(name = "alojamientoId")
@@ -24,20 +22,15 @@ public class Hotel {
 	
 	public Hotel() {}
 
-	public Hotel(int idHotel, String nombre, String contacto, Alojamiento aloj) {
+	public Hotel(String nombre, String contacto, Alojamiento aloj) {
 		super();
-		this.idHotel = idHotel;
 		this.nombre = nombre;
 		this.contacto = contacto;
 		this.aloj = aloj;
 	}
 
-	public int getIdHotel() {
-		return idHotel;
-	}
-
-	public void setIdHotel(int idHotel) {
-		this.idHotel = idHotel;
+	public int getId() {
+		return id;
 	}
 
 	public String getNombre() {
@@ -64,7 +57,4 @@ public class Hotel {
 		this.aloj = aloj;
 	}
 	
-
-	
-
 }

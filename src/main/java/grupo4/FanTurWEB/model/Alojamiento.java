@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,15 +15,12 @@ import javax.persistence.Table;
 public class Alojamiento {
 	
 	@Id
-	@Column(name = "alojamientoId")
-	private int alojamientoId;
-	@Column(name = "servicio")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	// enum
 	private String servicio;
-	@Column(name = "nroHab")
-	private int nroHab;
-	@Column(name = "noches")
+	private String nroHab;
 	private int noches;
-	@Column(name = "precio")
 	private double precio;
 	@OneToMany(mappedBy = "alojamiento")
 	private List<Paquete> paquetes;
@@ -30,10 +29,9 @@ public class Alojamiento {
 	
 	public Alojamiento() {}
 
-	public Alojamiento(int alojamientoId, String servicio, int nroHab, int noches, double precio,
+	public Alojamiento(String servicio, String nroHab, int noches, double precio,
 			List<Paquete> paquetes, List<Hotel> hoteles) {
 		super();
-		this.alojamientoId = alojamientoId;
 		this.servicio = servicio;
 		this.nroHab = nroHab;
 		this.noches = noches;
@@ -42,12 +40,12 @@ public class Alojamiento {
 		this.hoteles = hoteles;
 	}
 
-	public int getAlojamientoId() {
-		return alojamientoId;
+	public int getId() {
+		return id;
 	}
 
-	public void setAlojamientoId(int alojamientoId) {
-		this.alojamientoId = alojamientoId;
+	public void setId(int alojamientoId) {
+		this.id = alojamientoId;
 	}
 
 	public String getServicio() {
@@ -58,11 +56,11 @@ public class Alojamiento {
 		this.servicio = servicio;
 	}
 
-	public int getNroHab() {
+	public String getNroHab() {
 		return nroHab;
 	}
 
-	public void setNroHab(int nroHab) {
+	public void setNroHab(String nroHab) {
 		this.nroHab = nroHab;
 	}
 
@@ -98,5 +96,4 @@ public class Alojamiento {
 		this.hoteles = hoteles;
 	}
 	
-
 }
