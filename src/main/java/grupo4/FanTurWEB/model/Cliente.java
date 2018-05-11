@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -23,14 +24,18 @@ public class Cliente extends User {
 	@Transient
 	private Reserva reserva;
 	
+	@JoinColumn
+	private Contacto contacto;
+	
 	public Cliente() {
 		super();
 	}
 	
-	public Cliente(String nombre,String apellido,String password, Date nacimiento, List<Reserva> reservas) {
+	public Cliente(String nombre,String apellido,String password, Date nacimiento, List<Reserva> reservas, Contacto contacto) {
 		super(nombre,apellido,password);
 		this.nacimiento = nacimiento;
 		this.reservas = reservas;
+		this.contacto = contacto;
 	}
 
 	public Date getNacimiento() {
