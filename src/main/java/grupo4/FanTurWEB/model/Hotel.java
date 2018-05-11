@@ -17,7 +17,7 @@ public class Hotel {
 	private String nombre;
 	private String contacto;
 	@ManyToOne
-	@JoinColumn(name = "alojamientoId")
+	@JoinColumn(name = "id")
 	private Alojamiento aloj;
 	
 	public Hotel() {}

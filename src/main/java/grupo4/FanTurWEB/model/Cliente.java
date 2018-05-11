@@ -1,12 +1,13 @@
 package grupo4.FanTurWEB.model;
 
-import java.util.Date; 
-
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Past;
 
 @Entity
@@ -18,6 +19,9 @@ public class Cliente extends User {
 
 	@OneToMany(mappedBy="cliente")
 	private List<Reserva> reservas;
+	
+	@Transient
+	private Reserva reserva;
 	
 	public Cliente() {
 		super();
@@ -41,8 +45,14 @@ public class Cliente extends User {
 		return reservas;
 	}
 
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
+	public void reservar(Paquete paquete) {
+		reserva = FactoryReserva.createReserva(paquete);
+		if (reserva != null) {
+			if (this.reservas == null) {
+				this.reservas = new LinkedList<Reserva>();
+			}
+			this.reservas.add(reserva);
+		}
 	}
 
 }

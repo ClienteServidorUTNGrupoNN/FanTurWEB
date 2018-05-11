@@ -12,6 +12,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import grupo4.FanTurWEB.model.Admin;
+import grupo4.FanTurWEB.model.Admin_;
 
 @Stateless
 public class AdminDao implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao {
@@ -57,8 +58,8 @@ public class AdminDao implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao 
 		Root<Admin> a = cq.from(Admin.class);
 		cq.select(a);
 		Predicate condicion = cb.or(
-				cb.like(a.get("nombre").as(String.class), nombre),
-				cb.like(a.get("apellido").as(String.class), apellido));
+				cb.like(a.get(Admin_.nombre), nombre),
+				cb.like(a.get(Admin_.apellido), apellido));
 		cq.where(condicion);
 		TypedQuery<Admin> tq = em.createQuery(cq);	
 		return tq.getResultList();

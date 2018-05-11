@@ -25,17 +25,15 @@ public class Reserva {
 	private Date fechaReserva, fechaPago;
 	
 	@OneToOne
-	@JoinColumn(name = "idPaquete")
+	@JoinColumn(name = "PAQUETE_FK")
 	private Paquete paquete;
 	
 	public Reserva(){
 		
 	}
 
-	public Reserva(Cliente cliente, Date fechaReserva, Date fechaPago, Paquete paquete) {
+	public Reserva(Cliente cliente, Paquete paquete) {
 		this.cliente = cliente;
-		this.fechaReserva = fechaReserva;
-		this.fechaPago = fechaPago;
 		this.paquete = paquete;
 	}
 

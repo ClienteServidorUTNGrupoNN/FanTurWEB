@@ -20,36 +20,33 @@ public class Paquete {
 	@Id
 	private int id;
 	private double precio;
-	private int cantPaquete;
+	
+	private int cantidad;
 	@OneToMany(mappedBy="paquete")
 	private List<Pasaje> pasajes;
 	@ManyToOne
-	@JoinColumn(name = "alojamientoId")
+	@JoinColumn(name = "ALOJAMIENTO_ID")
 	private Alojamiento alojamiento;
 	@ManyToMany
 	@JoinTable(name="Paquete_Evento",
-	 joinColumns=@JoinColumn(name="idPaquete"),
-	 inverseJoinColumns=@JoinColumn(name="nroEvento"))
+	 joinColumns=@JoinColumn(name="ID_PAQUETE"),
+	 inverseJoinColumns=@JoinColumn(name="ID_EVENTO"))
 	private List<Evento> evento;
-	@OneToOne
-	@JoinColumn(name="idReserva")
-	private Reserva reserva;
 	private String autorizado;
-	
-	//private Admin administrador
+	private Admin creadoPor;
 		
 	public Paquete() {}
 
-	public Paquete(int id, double precio, int cantPaquete, List<Pasaje> pasajes, Alojamiento alojamiento,
-			List<Evento> evento, Reserva reserva) {
+	public Paquete(int id, double precio, int cantidad, List<Pasaje> pasajes, Alojamiento alojamiento,
+			List<Evento> evento, Admin admin) {
 		super();
 		this.id = id;
 		this.precio = precio;
-		this.cantPaquete = cantPaquete;
+		this.cantidad = cantidad;
 		this.pasajes = pasajes;
 		this.alojamiento = alojamiento;
 		this.evento = evento;
-		this.reserva = reserva;
+		this.creadoPor = admin;
 	}
 
 	public int getId() {
@@ -68,12 +65,12 @@ public class Paquete {
 		this.precio = precio;
 	}
 
-	public int getCantPaquete() {
-		return cantPaquete;
+	public int getCantidad() {
+		return cantidad;
 	}
 
-	public void setCantPaquete(int cantPaquete) {
-		this.cantPaquete = cantPaquete;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	public List<Pasaje> getPasajes() {
@@ -99,13 +96,9 @@ public class Paquete {
 	public void setEvento(List<Evento> evento) {
 		this.evento = evento;
 	}
-
-	public Reserva getReserva() {
-		return reserva;
-	}
-
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
+	
+	public Admin getCreadoPor() {
+		return this.creadoPor;
 	}
 
 }
