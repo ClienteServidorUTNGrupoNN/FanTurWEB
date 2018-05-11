@@ -1,5 +1,5 @@
 # FanTurWEB
-##Instrucciones
+## Instrucciones
 1. Clonar el repositorio e importarlo al IDE.
 2. Descargar el conector JDBC para MySQL desde https://dev.mysql.com/downloads/file/?id=476198
 3. Descomprimirlo en $(JBOSS)/modules/system/layers/base/com/mysql/main/
