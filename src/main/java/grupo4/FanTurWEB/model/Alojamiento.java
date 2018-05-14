@@ -15,16 +15,14 @@ public class Alojamiento {
 	private int id;
 	// enum
 	private String servicio;
-	private Habitacion habitacion;
 	private int noches;
 	private double precio;
 	
 	public Alojamiento() {}
 
-	public Alojamiento(String servicio, Habitacion habitacion, int noches, double precio) {
+	public Alojamiento(String servicio, int noches, double precio) {
 		super();
 		this.servicio = servicio;
-		this.habitacion = habitacion;
 		this.noches = noches;
 		this.precio = precio;
 	}
@@ -43,14 +41,6 @@ public class Alojamiento {
 
 	public void setServicio(String servicio) {
 		this.servicio = servicio;
-	}
-
-	public Habitacion getHabitaacion() {
-		return habitacion;
-	}
-
-	public void setHabitacion(Habitacion habitacion) {
-		this.habitacion = habitacion;
 	}
 
 	public int getNoches() {

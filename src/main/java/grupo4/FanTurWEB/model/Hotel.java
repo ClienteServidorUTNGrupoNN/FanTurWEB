@@ -1,6 +1,5 @@
 package grupo4.FanTurWEB.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "hotel",schema="fantur")
@@ -18,10 +16,8 @@ public class Hotel {
 	@GeneratedValue
 	private int id;
 	@NotNull
-	@Size(min = 2, max = 50)
-	@Column(name = "nombre")
 	private String nombre;
-	private String contacto;
+	private Contacto contacto;
 	private Ubicacion ubicacion;
 	@ManyToOne
 	@JoinColumn(name = "id")
@@ -29,7 +25,7 @@ public class Hotel {
 	
 	public Hotel() {}
 
-	public Hotel(String nombre, String contacto, Alojamiento aloj, Ubicacion ubicacion) {
+	public Hotel(String nombre, Contacto contacto, Alojamiento aloj, Ubicacion ubicacion) {
 		super();
 		this.nombre = nombre;
 		this.contacto = contacto;
@@ -49,11 +45,11 @@ public class Hotel {
 		this.nombre = nombre;
 	}
 
-	public String getContacto() {
+	public Contacto getContacto() {
 		return contacto;
 	}
 
-	public void setContacto(String contacto) {
+	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}
 

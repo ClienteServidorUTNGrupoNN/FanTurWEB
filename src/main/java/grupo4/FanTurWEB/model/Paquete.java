@@ -2,14 +2,12 @@ package grupo4.FanTurWEB.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -20,7 +18,6 @@ public class Paquete {
 	@Id
 	private int id;
 	private double precio;
-	
 	private int cantidad;
 	@OneToMany(mappedBy="paquete")
 	private List<Pasaje> pasajes;

@@ -14,7 +14,6 @@
 		<class>grupo4.FanTurWEB.model.Cliente</class>
 		<class>grupo4.FanTurWEB.model.Contacto</class>
 		<class>grupo4.FanTurWEB.model.Evento</class>
-		<class>grupo4.FanTurWEB.model.Habitacion</class>
 		<class>grupo4.FanTurWEB.model.Hotel</class>
 		<class>grupo4.FanTurWEB.model.Pasaje</class>
 		<class>grupo4.FanTurWEB.model.Paquete</class>
