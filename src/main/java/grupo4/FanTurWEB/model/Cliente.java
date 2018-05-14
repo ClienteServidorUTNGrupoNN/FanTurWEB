@@ -24,7 +24,7 @@ public class Cliente extends User {
 	@Transient
 	private Reserva reserva;
 	
-	@JoinColumn
+	@JoinColumn(name = "idContacto")
 	private Contacto contacto;
 	
 	public Cliente() {
@@ -49,6 +49,14 @@ public class Cliente extends User {
 	public List<Reserva> getReservas() {
 		return reservas;
 	}
+	
+	public Contacto getContacto() {
+		return contacto;
+	}
+
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
+	}
 
 	public void reservar(Paquete paquete) {
 		reserva = FactoryReserva.createReserva(paquete);
@@ -59,5 +67,6 @@ public class Cliente extends User {
 			this.reservas.add(reserva);
 		}
 	}
+
 
 }

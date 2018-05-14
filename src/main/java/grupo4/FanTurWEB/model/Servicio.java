@@ -13,22 +13,12 @@ import javax.validation.constraints.Size;
 //import grupo4.FanTurWEB.model.Pasaje.TipoVehiculo;
 
 @Entity
-@Table(name="servicio",schema="fantur")
 public class Servicio {
 	
 	private enum TipoServicio {
-		BasicAuto,
-		MediumAuto,
-		PremiumAuto,
-		BasicAvion,
-		MediumAvion,
-		PremiumAvion,
-		BasicColectivo,
-		MediumColectivo,
-		PremiumColectivo,
-		BasicTren,
-		MediumTren,
-		PremiumTren
+		Basic,
+		Medium,
+		Premium,
 	}
 	
 	@Id
@@ -92,6 +82,10 @@ public class Servicio {
 		this.setComida(comida);
 		this.setAzafata(azafata);
 		this.setTipoCls(tipoCls);
+	}
+	
+	public Servicio() {
+		
 	}
 
 }
