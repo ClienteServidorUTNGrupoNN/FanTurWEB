@@ -13,28 +13,33 @@ import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name="paquete",schema="fantur")
 public class Paquete {
 	
 	@Id
 	private int id;
+	
 	private double precio;
+	
 	private int cantidad;
+	
 	@OneToMany(mappedBy="paquete")
 	private List<Pasaje> pasajes;
+	
 	@ManyToOne
 	@JoinColumn(name = "ALOJAMIENTO_ID")
 	private Alojamiento alojamiento;
+	
 	@ManyToMany
 	@JoinTable(name="Paquete_Evento",
 	 joinColumns=@JoinColumn(name="ID_PAQUETE"),
 	 inverseJoinColumns=@JoinColumn(name="ID_EVENTO"))
 	private List<Evento> evento;
-	private String autorizado;
 	
 	@OneToOne
 	@JoinColumn
 	private Admin creadoPor;
+	
+	private String autorizado;
 		
 	public Paquete() {}
 

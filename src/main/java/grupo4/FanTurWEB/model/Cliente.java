@@ -13,7 +13,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Past;
 
 @Entity
-@Table(name="cliente",schema="fantur")
 public class Cliente extends User {
 	
 	@Past

@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Admin_;
 
+
 @Stateless
 public class AdminDao implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao {
 

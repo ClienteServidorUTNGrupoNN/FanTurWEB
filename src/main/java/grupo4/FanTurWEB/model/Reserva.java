@@ -12,7 +12,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="reserva",schema="fantur")
 public class Reserva {
 	
 	@Id 

@@ -5,7 +5,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Alojamiento;
 
 
@@ -32,13 +37,17 @@ public class AlojamientoDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao
 	
 	@Override
 	public Alojamiento findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Alojamiento.class, id);
 	}
 
 	@Override
 	public List<Alojamiento> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Alojamiento> cq = cb.createQuery(Alojamiento.class);
+		Root<Alojamiento> a = cq.from(Alojamiento.class);
+		cq.select(a);
+		TypedQuery<Alojamiento> tq = em.createQuery(cq);
+		
+		return tq.getResultList();
 	}
 }

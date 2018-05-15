@@ -5,7 +5,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Paquete;
 
 @Stateless
@@ -31,14 +36,19 @@ public class PaqueteDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Paq
 	
 	@Override
 	public Paquete findById(Integer id) {
-		// TODO Auto-generated method stub
+		em.find(Paquete.class, id);
 		return null;
 	}
 
 	@Override
 	public List<Paquete> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Paquete> cq = cb.createQuery(Paquete.class);
+		Root<Paquete> a = cq.from(Paquete.class);
+		cq.select(a);
+		TypedQuery<Paquete> tq = em.createQuery(cq);
+		
+		return tq.getResultList();
 	}
 	
 }

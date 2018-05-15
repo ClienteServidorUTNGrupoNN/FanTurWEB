@@ -9,16 +9,16 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:/jboss/datasources/FanTurDS</jta-data-source>
 		
-		<class>grupo4.FanTurWEB.model.Alojamiento</class>
 		<class>grupo4.FanTurWEB.model.Admin</class>
+		<class>grupo4.FanTurWEB.model.Alojamiento</class>
+		<class>grupo4.FanTurWEB.model.Clase</class>
 		<class>grupo4.FanTurWEB.model.Cliente</class>
 		<class>grupo4.FanTurWEB.model.Contacto</class>
 		<class>grupo4.FanTurWEB.model.Evento</class>
 		<class>grupo4.FanTurWEB.model.Hotel</class>
-		<class>grupo4.FanTurWEB.model.Pasaje</class>
 		<class>grupo4.FanTurWEB.model.Paquete</class>
+		<class>grupo4.FanTurWEB.model.Pasaje</class>
 		<class>grupo4.FanTurWEB.model.Reserva</class>
-		<class>grupo4.FanTurWEB.model.Servicio</class>
 		<class>grupo4.FanTurWEB.model.Ubicacion</class>
 		<class>grupo4.FanTurWEB.model.User</class>
         

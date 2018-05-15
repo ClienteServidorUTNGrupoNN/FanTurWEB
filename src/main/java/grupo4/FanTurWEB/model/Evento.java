@@ -9,7 +9,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="evento",schema="fantur")
 public class Evento {
 	
 	@Id

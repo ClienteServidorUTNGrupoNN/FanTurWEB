@@ -9,10 +9,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="admin",schema="fantur")
 public class Admin extends User {
 	
-	// @Column(name = "registradoPor")
 	@ManyToOne
 	private Admin registradoPor;
 	

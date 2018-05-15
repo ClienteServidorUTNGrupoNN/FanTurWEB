@@ -1,9 +1,7 @@
 package grupo4.FanTurWEB.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,10 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="pasaje",schema="fantur")
 public class Pasaje {
 
 	@Id
@@ -27,12 +23,11 @@ public class Pasaje {
 	
 	@OneToOne
 	@JoinColumn(name = "idServicio")
-	private Servicio servicio;
+	private Clase clase;
 	
 	private Date partida;
 	
-	@Column(name = "fechaVuelta")
-	private LocalDate fechaVuelta;
+	private Date fechaVuelta;
 	
 	@OneToOne
 	private Ubicacion origen, destino;
@@ -57,11 +52,11 @@ public class Pasaje {
 	public void setVehiculo(TipoVehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	public Servicio getServicio() {
-		return servicio;
+	public Clase getServicio() {
+		return clase;
 	}
-	public void setServicio(Servicio servicio) {
-		this.servicio = servicio;
+	public void setServicio(Clase servicio) {
+		this.clase = servicio;
 	}
 	public Date getPartida() {
 		return partida;
@@ -69,10 +64,10 @@ public class Pasaje {
 	public void setFechaPartida(Date partida) {
 		this.partida = partida;
 	}
-	public LocalDate getFechaVuelta() {
+	public Date getFechaVuelta() {
 		return fechaVuelta;
 	}
-	public void setFechaVuelta(LocalDate fechaVuelta) {
+	public void setFechaVuelta(Date fechaVuelta) {
 		this.fechaVuelta = fechaVuelta;
 	}
 	public Ubicacion getOrigen() {
@@ -105,10 +100,10 @@ public class Pasaje {
 	public void setPaquete(Paquete paquete) {
 		this.paquete = paquete;
 	}
-	public Pasaje(TipoVehiculo vehiculo, Servicio servicio, Date fechaPartida, LocalDate fechaVuelta,
+	public Pasaje(TipoVehiculo vehiculo, Clase clase, Date fechaPartida, Date fechaVuelta,
 			Ubicacion origen, Ubicacion destino, int asiento, double precio, Paquete paquete) {
 		this.vehiculo = vehiculo;
-		this.servicio = servicio;
+		this.clase = clase;
 		this.partida = fechaPartida;
 		this.fechaVuelta = fechaVuelta;
 		this.origen = origen;

@@ -5,7 +5,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Evento;
 
 
@@ -40,13 +45,18 @@ public class EventoDao implements grupo4.FanTurWEB.model.dao.interfaces.EventoDa
 	
 	@Override
 	public List<Evento> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Evento> cq = cb.createQuery(Evento.class);
+		Root<Evento> a = cq.from(Evento.class);
+		cq.select(a);
+		TypedQuery<Evento> tq = em.createQuery(cq);
+		
+		return tq.getResultList();
 	}
 	
 	@Override
-	public Evento findById(Integer ne) {
-		// TODO Auto-generated method stub
+	public Evento findById(Integer id) {
+		em.find(Evento.class, id);
 		return null;
 	}
 
