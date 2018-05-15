@@ -20,8 +20,9 @@ public class Reserva {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name= "id")
+	@JoinColumn(name= "idCliente")
 	private Cliente cliente;
+	
 	private Date fechaReserva, fechaPago;
 	
 	@OneToOne

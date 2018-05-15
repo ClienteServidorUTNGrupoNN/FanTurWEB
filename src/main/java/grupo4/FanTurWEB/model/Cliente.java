@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Past;
@@ -24,6 +25,7 @@ public class Cliente extends User {
 	@Transient
 	private Reserva reserva;
 	
+	@OneToOne
 	@JoinColumn(name = "idContacto")
 	private Contacto contacto;
 	

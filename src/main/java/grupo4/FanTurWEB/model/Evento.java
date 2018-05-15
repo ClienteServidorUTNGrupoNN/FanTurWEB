@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,9 @@ public class Evento {
 	private String descripcion;
 	private double precio;
 	private int nroEnt;
+	
+	@OneToOne
+	@JoinColumn(name = "UBICACION_FK")
 	private Ubicacion lugar;
 	private Date fecha;
 	

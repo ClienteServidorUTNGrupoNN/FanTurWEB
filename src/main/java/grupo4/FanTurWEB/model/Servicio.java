@@ -5,44 +5,33 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Table;
+//import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 //import grupo4.FanTurWEB.model.Pasaje.TipoVehiculo;
 
+
 @Entity
 public class Servicio {
 	
-	private enum TipoServicio {
-		Basic,
-		Medium,
-		Premium,
-	}
-	
 	@Id
+	private int id;
+	
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private TipoServicio tipoServ;
 	
 	@Size(min = 2, max = 50)
-	@Column(name = "comida")
 	private String comida;
 	
 	@AssertTrue
 	@Column(name = "azafata")
 	private String azafata;
-
-	private enum TipoClase {
-		turista,
-		segundaClase,
-		primera
-	}
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	@Column(name = "tipoClase")
 	private TipoClase tipoCls;
 
 	public TipoServicio getTipoServ() {

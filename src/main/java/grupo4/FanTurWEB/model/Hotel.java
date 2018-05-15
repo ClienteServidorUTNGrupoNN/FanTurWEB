@@ -23,7 +23,8 @@ public class Hotel {
 	private String nombre;
 	
 	@NotNull
-	@JoinColumn
+	@OneToOne
+	@JoinColumn(name = "idContacto")
 	private Contacto contacto;
 	
 	@OneToOne
@@ -31,7 +32,7 @@ public class Hotel {
 	private Ubicacion ubicacion;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "idAlojamiento")
 	private Alojamiento aloj;
 	
 	public Hotel() {}

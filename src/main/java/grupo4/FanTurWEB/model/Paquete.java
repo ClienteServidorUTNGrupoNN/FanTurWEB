@@ -8,6 +8,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -30,6 +31,9 @@ public class Paquete {
 	 inverseJoinColumns=@JoinColumn(name="ID_EVENTO"))
 	private List<Evento> evento;
 	private String autorizado;
+	
+	@OneToOne
+	@JoinColumn
 	private Admin creadoPor;
 		
 	public Paquete() {}

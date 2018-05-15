@@ -22,16 +22,10 @@ public class Pasaje {
 	@GeneratedValue
 	private int id;
 	
-	private enum TipoVehiculo {
-	    Auto,
-	    Avion,
-	    Colectivo,
-	    Tren
-	}
-	
 	@Enumerated(EnumType.STRING)
 	private TipoVehiculo vehiculo;
 	
+	@OneToOne
 	@JoinColumn(name = "idServicio")
 	private Servicio servicio;
 	
