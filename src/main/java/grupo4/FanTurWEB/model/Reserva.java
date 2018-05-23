@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+//import javax.persistence.Table;
 
 @Entity
 public class Reserva {
@@ -18,6 +18,28 @@ public class Reserva {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reserva other = (Reserva) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	@ManyToOne
 	@JoinColumn(name= "idCliente")
 	private Cliente cliente;
@@ -29,7 +51,7 @@ public class Reserva {
 	private Paquete paquete;
 	
 	public Reserva(){
-		
+		super();
 	}
 
 	public Reserva(Cliente cliente, Paquete paquete) {

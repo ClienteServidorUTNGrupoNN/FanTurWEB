@@ -40,8 +40,7 @@ public class PasajeDao implements grupo4.FanTurWEB.model.dao.interfaces.PasajeDa
 	
 
 	public Pasaje findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Pasaje.class, id);
 	}
 	
 

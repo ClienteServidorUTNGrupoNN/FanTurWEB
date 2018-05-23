@@ -31,8 +31,7 @@ public class UbicacionDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<U
 
 	@Override
 	public Ubicacion findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Ubicacion.class, id);
 	}
 
 	@Override

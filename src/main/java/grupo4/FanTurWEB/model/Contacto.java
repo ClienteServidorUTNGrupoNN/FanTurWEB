@@ -15,6 +15,28 @@ public class Contacto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contacto other = (Contacto) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	private String email;
 	
 	private String pagina;
@@ -66,7 +88,7 @@ public class Contacto {
 	}
 	
 	public Contacto() {
-		
+		super();
 	}
 	
 	public Contacto(String email, int codPaisyArea, int telefono, String pagina) {

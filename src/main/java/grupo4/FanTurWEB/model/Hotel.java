@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+//import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,6 +17,28 @@ public class Hotel {
 	@GeneratedValue
 	private int id;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hotel other = (Hotel) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	@NotNull
 	@Size(min = 2, max = 50)
 	private String nombre;
@@ -34,7 +56,9 @@ public class Hotel {
 	@JoinColumn(name = "idAlojamiento")
 	private Alojamiento aloj;
 	
-	public Hotel() {}
+	public Hotel() {
+		super();
+	}
 
 	public Hotel(String nombre, Contacto contacto, Alojamiento aloj, Ubicacion ubicacion) {
 		super();

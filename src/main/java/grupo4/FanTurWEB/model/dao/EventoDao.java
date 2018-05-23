@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import grupo4.FanTurWEB.model.Admin;
+//import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Evento;
 
 

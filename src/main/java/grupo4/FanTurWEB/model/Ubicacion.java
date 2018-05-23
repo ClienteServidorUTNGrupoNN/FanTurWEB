@@ -3,7 +3,7 @@ package grupo4.FanTurWEB.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+//import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
 @Entity
@@ -12,6 +12,28 @@ public class Ubicacion {
 	@Id
 	@Column(name="id")
 	private int id;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ubicacion other = (Ubicacion) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 	@Column(name="calle")
 	private String calle;
@@ -30,7 +52,7 @@ public class Ubicacion {
 	private String pais;
 	
 	public Ubicacion() {
-		
+		super();
 	}
 	
 	public Ubicacion( String calle, int altura, String localidad, String provincia, String pais) {

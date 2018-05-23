@@ -9,14 +9,36 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+//import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
 public class Paquete {
-	
+
 	@Id
 	private int id;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paquete other = (Paquete) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 	private double precio;
 	
@@ -40,8 +62,10 @@ public class Paquete {
 	private Admin creadoPor;
 	
 	private String autorizado;
-		
-	public Paquete() {}
+	
+	public Paquete() {
+		super();
+	}
 
 	public Paquete(int id, double precio, int cantidad, List<Pasaje> pasajes, Alojamiento alojamiento,
 			List<Evento> evento, Admin admin) {

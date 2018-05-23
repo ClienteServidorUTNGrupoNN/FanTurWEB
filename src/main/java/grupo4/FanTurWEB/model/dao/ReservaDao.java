@@ -32,8 +32,7 @@ public class ReservaDao implements  grupo4.FanTurWEB.model.dao.interfaces.Dao<Re
 	
 	@Override
 	public Reserva findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Reserva.class, id);
 	}
 
 	@Override

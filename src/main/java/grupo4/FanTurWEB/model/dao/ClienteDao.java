@@ -35,12 +35,7 @@ public class ClienteDao implements grupo4.FanTurWEB.model.dao.interfaces.Cliente
 
 	@Override
 	public Cliente findById(Integer id) {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
-		Root<Cliente> c = cq.from(Cliente.class);
-		cq.select(c).where(cb.equal(c.get("id").as(Integer.class), id));
-		TypedQuery<Cliente> tq = em.createQuery(cq);
-		return tq.getSingleResult();
+		return em.find(Cliente.class, id);
 	}
 
 	@Override

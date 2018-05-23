@@ -18,6 +18,28 @@ public class Pasaje {
 	@GeneratedValue
 	private int id;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pasaje other = (Pasaje) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	@Enumerated(EnumType.STRING)
 	private TipoVehiculo vehiculo;
 	
@@ -113,6 +135,8 @@ public class Pasaje {
 		this.paquete = paquete;
 	}
 	
-	public Pasaje() {}
+	public Pasaje() {
+		super();
+	}
 
 }

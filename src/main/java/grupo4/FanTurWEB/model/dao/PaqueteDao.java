@@ -36,8 +36,7 @@ public class PaqueteDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Paq
 	
 	@Override
 	public Paquete findById(Integer id) {
-		em.find(Paquete.class, id);
-		return null;
+		return em.find(Paquete.class, id);
 	}
 
 	@Override

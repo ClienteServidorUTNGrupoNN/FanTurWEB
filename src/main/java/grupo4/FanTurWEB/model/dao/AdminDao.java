@@ -16,41 +16,9 @@ import grupo4.FanTurWEB.model.Admin_;
 
 
 @Stateless
-public class AdminDao implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao {
+public class AdminDao extends AbstractDao<Admin, Integer>
+	implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao {
 
-	@PersistenceContext(unitName = "pu1")
-	private EntityManager em;
-	
-	@Override
-	public void create(Admin admin) {
-		em.persist(admin);
-	}
-
-	@Override
-	public void update(Admin admin) {
-		em.persist(admin);
-	}
-
-	@Override
-	public void delete(Admin admin) {
-		em.remove(admin);
-	}
-
-	@Override
-	public Admin findById(Integer id) {
-		return em.find(Admin.class, id);
-	}
-
-	@Override
-	public List<Admin> findAll() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Admin> cq = cb.createQuery(Admin.class);
-		Root<Admin> a = cq.from(Admin.class);
-		cq.select(a);
-		TypedQuery<Admin> tq = em.createQuery(cq);
-		
-		return tq.getResultList();
-	}
 
 	@Override
 	public List<Admin> findByNombreApellido(String nombre, String apellido) {
@@ -74,6 +42,12 @@ public class AdminDao implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao 
 		cq.select(a).where(cb.equal(a.get("registradoPor"), admin));
 		TypedQuery<Admin> tq = em.createQuery(cq);
 		return tq.getResultList();
+	}
+
+	@Override
+	protected Class<Admin> getClazz() {
+		// TODO Auto-generated method stub
+		return Admin.class;
 	}
 
 }

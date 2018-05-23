@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import grupo4.FanTurWEB.model.Admin;
+//import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Hotel;
 
 @Stateless
@@ -36,8 +36,7 @@ public class HotelDao implements grupo4.FanTurWEB.model.dao.interfaces.HotelDao 
 	
 	@Override
 	public Hotel findById(Integer id) {
-		em.find(Hotel.class, id);
-		return null;
+		return em.find(Hotel.class, id);
 	}
 	
 	@Override
@@ -50,4 +49,7 @@ public class HotelDao implements grupo4.FanTurWEB.model.dao.interfaces.HotelDao 
 		
 		return tq.getResultList();
 	}
+
+	
+	
 }
