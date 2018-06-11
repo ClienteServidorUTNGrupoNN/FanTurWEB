@@ -14,8 +14,16 @@ import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Paquete;
 
 @Stateless
-public class PaqueteDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Paquete,Integer> {
+public class PaqueteDao extends AbstractDao<Paquete, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Paquete,Integer> {
 
+	@Override
+	protected Class<Paquete> getClazz() {
+		return Paquete.class;
+	}
+
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
@@ -49,5 +57,6 @@ public class PaqueteDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Paq
 		
 		return tq.getResultList();
 	}
+	*/
 	
 }

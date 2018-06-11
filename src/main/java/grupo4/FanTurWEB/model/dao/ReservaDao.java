@@ -10,8 +10,16 @@ import grupo4.FanTurWEB.model.Reserva;
 
 
 @Stateless
-public class ReservaDao implements  grupo4.FanTurWEB.model.dao.interfaces.Dao<Reserva,Integer> {
+public class ReservaDao extends AbstractDao<Reserva, Integer>implements  grupo4.FanTurWEB.model.dao.interfaces.Dao<Reserva,Integer> {
+
+	@Override
+	protected Class<Reserva> getClazz() {
+		return Reserva.class;
+	}
 	
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
@@ -40,7 +48,5 @@ public class ReservaDao implements  grupo4.FanTurWEB.model.dao.interfaces.Dao<Re
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
+	*/
 }

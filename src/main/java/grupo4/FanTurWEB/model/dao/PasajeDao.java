@@ -11,8 +11,16 @@ import grupo4.FanTurWEB.model.Pasaje;
 
 
 @Stateless
-public class PasajeDao implements grupo4.FanTurWEB.model.dao.interfaces.PasajeDao {
+public class PasajeDao extends AbstractDao<Pasaje, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.PasajeDao {
 
+	@Override
+	protected Class<Pasaje> getClazz() {
+		return Pasaje.class;
+	}
+
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
@@ -28,16 +36,7 @@ public class PasajeDao implements grupo4.FanTurWEB.model.dao.interfaces.PasajeDa
 	@Override
 	public void update(Pasaje p) {
 		em.persist(p);
-	}
-	
-	
-
-	
-	@Override
-	public Pasaje encontrarPasaje(int np) {
-		return em.find(Pasaje.class, np);
-	}
-	
+	}	
 
 	public Pasaje findById(Integer id) {
 		return em.find(Pasaje.class, id);
@@ -48,4 +47,5 @@ public class PasajeDao implements grupo4.FanTurWEB.model.dao.interfaces.PasajeDa
 		// TODO Auto-generated method stub
 		return null;
 	}
+	*/
 }

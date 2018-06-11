@@ -1,6 +1,6 @@
 package grupo4.FanTurWEB.model.dao;
 
-import java.util.List;
+//import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,8 +15,11 @@ import grupo4.FanTurWEB.model.Alojamiento;
 
 
 @Stateless
-public class AlojamientoDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Alojamiento,Integer> {
+public class AlojamientoDao extends AbstractDao<Alojamiento, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Alojamiento,Integer> {
 
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
@@ -49,5 +52,11 @@ public class AlojamientoDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao
 		TypedQuery<Alojamiento> tq = em.createQuery(cq);
 		
 		return tq.getResultList();
+	}
+	*/	
+	
+	@Override
+	protected Class<Alojamiento> getClazz() {
+		return Alojamiento.class;
 	}
 }

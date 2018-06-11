@@ -14,8 +14,16 @@ import javax.persistence.criteria.Root;
 import grupo4.FanTurWEB.model.Hotel;
 
 @Stateless
-public class HotelDao implements grupo4.FanTurWEB.model.dao.interfaces.HotelDao {
+public class HotelDao extends AbstractDao<Hotel, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.HotelDao {
+
+	@Override
+	protected Class<Hotel> getClazz() {
+		return Hotel.class;
+	}
 	
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
@@ -49,7 +57,5 @@ public class HotelDao implements grupo4.FanTurWEB.model.dao.interfaces.HotelDao 
 		
 		return tq.getResultList();
 	}
-
-	
-	
+	*/
 }

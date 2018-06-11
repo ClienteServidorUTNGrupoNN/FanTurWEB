@@ -15,32 +15,35 @@ import grupo4.FanTurWEB.model.Evento;
 
 
 @Stateless
-public class EventoDao implements grupo4.FanTurWEB.model.dao.interfaces.EventoDao {
+public class EventoDao extends AbstractDao<Evento, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.EventoDao {
+
+	@Override
+	protected Class<Evento> getClazz() {
+		return Evento.class;
+	}
 	
+	/*
 	@PersistenceContext(unitName= "pu1")
 	private EntityManager em;
 	
 	@Override
-	public void create(Evento e) {
-		
-		em.persist(e);
+	public void create(Evento evento) {
+		em.persist(evento);
 	}
 	
 	@Override
-	public void delete(Evento e) {
-		em.remove(e);
+	public void update(Evento evento) {
+		em.persist(evento);
 	}
 	
 	@Override
-	public void update(Evento e) {
-		em.persist(e);
+	public void delete(Evento evento) {
+		em.remove(evento);
 	}
 	
 	@Override
-	public Evento encontrarEvento(int ne) {
-		
-		return em.find(Evento.class, ne);
-		
+	public Evento findById(int id) {
+		return em.find(Evento.class, id);
 	}
 	
 	@Override
@@ -53,12 +56,6 @@ public class EventoDao implements grupo4.FanTurWEB.model.dao.interfaces.EventoDa
 		
 		return tq.getResultList();
 	}
-	
-	@Override
-	public Evento findById(Integer id) {
-		em.find(Evento.class, id);
-		return null;
-	}
-
+	*/
 
 }

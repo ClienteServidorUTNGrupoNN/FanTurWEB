@@ -2,6 +2,7 @@ package grupo4.FanTurWEB.model.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -11,11 +12,21 @@ import javax.persistence.criteria.Root;
 
 import grupo4.FanTurWEB.model.Contacto;
 
-public class ContactoDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Contacto,Integer> {
+@Stateless
+public class ContactoDao extends AbstractDao<Contacto, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Contacto,Integer> {
+
+	@Override
+	protected Class<Contacto> getClazz() {
+		return Contacto.class;
+	}
 	
+	
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 	
 	@PersistenceContext(unitName = "pu1")
 	EntityManager em;
-	
+
 	@Override
 	public void create(Contacto contacto) {
 		em.persist(contacto);
@@ -45,5 +56,6 @@ public class ContactoDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Co
 		TypedQuery<Contacto> tq = em.createQuery(cq);
 		return tq.getResultList();
 	}
+	*/
 
 }

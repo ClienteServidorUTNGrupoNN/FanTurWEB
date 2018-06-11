@@ -3,12 +3,16 @@ package grupo4.FanTurWEB.model.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import grupo4.FanTurWEB.model.Admin;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import grupo4.FanTurWEB.model.dao.interfaces.Dao;
 
+@Stateless
 public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, Pk>  {
 
 	@PersistenceContext(unitName = "pu1")
@@ -17,20 +21,17 @@ public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, 
 	
 	@Override
 	public void create(T obj) {
-		// TODO Auto-generated method stub
-		
+		em.persist(obj);
 	}
 
 	@Override
 	public void update(T obj) {
-		// TODO Auto-generated method stub
-		
+		em.persist(obj);
 	}
 
 	@Override
 	public void delete(T obj) {
-		// TODO Auto-generated method stub
-		
+		em.remove(obj);
 	}
 
 	@Override
@@ -38,12 +39,17 @@ public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, 
 		return em.find(getClazz(), id);
 	}
 
-	protected abstract Class<T> getClazz();
-
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<T> cq = cb.createQuery(this.getClazz());
+		Root<T> a = cq.from(this.getClazz());
+		cq.select(a);
+		TypedQuery<T> tq = em.createQuery(cq);
+		return tq.getResultList();
 	}
+	
+	// pequeño yeite para que funcione este Generic DAO. Cada DAO lo redefine
+	protected abstract Class<T> getClazz();
 
 }

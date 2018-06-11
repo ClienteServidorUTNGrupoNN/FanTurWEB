@@ -46,7 +46,6 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 
 	@Override
 	protected Class<Admin> getClazz() {
-		// TODO Auto-generated method stub
 		return Admin.class;
 	}
 

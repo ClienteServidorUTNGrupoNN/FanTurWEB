@@ -9,6 +9,5 @@ public interface PasajeDao {
 
 	void create(Pasaje p);
 	void update(Pasaje p);
-	Pasaje encontrarPasaje(int np);
 	
 }

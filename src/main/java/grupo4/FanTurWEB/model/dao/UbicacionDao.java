@@ -9,8 +9,16 @@ import javax.persistence.PersistenceContext;
 import grupo4.FanTurWEB.model.Ubicacion;
 
 @Stateless
-public class UbicacionDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Ubicacion, Integer> {
+public class UbicacionDao extends AbstractDao<Ubicacion, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Ubicacion, Integer> {
 
+	@Override
+	protected Class<Ubicacion> getClazz() {
+		return Ubicacion.class;
+	}
+
+	/* Si anda bien el AbstractDAO, todo esto no hace falta
+	 * Ni siquiera el persistence context, lo hereda
+	 * 
 	@PersistenceContext(unitName = "pu1")
 	private EntityManager em;
 	
@@ -39,5 +47,6 @@ public class UbicacionDao implements grupo4.FanTurWEB.model.dao.interfaces.Dao<U
 		// TODO Auto-generated method stub
 		return null;
 	}
+	*/
 
 }
