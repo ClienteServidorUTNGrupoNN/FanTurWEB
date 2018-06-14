@@ -26,11 +26,12 @@ public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, 
 
 	@Override
 	public void update(T obj) {
-		em.persist(obj);
+		em.merge(obj);
 	}
 
 	@Override
 	public void delete(T obj) {
+		obj = em.merge(obj);
 		em.remove(obj);
 	}
 

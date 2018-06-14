@@ -12,8 +12,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import grupo4.FanTurWEB.model.Admin;
-import grupo4.FanTurWEB.model.Admin_;
 
+import grupo4.FanTurWEB.model.Admin_;
 
 @Stateless
 public class AdminDao extends AbstractDao<Admin, Integer>
