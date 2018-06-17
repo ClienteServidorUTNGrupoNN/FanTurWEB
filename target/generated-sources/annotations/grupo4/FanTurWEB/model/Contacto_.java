@@ -9,7 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Contacto_ {
 
 	public static volatile SingularAttribute<Contacto, String> pagina;
-	public static volatile SingularAttribute<Contacto, Integer> CodPaisyArea;
+	public static volatile SingularAttribute<Contacto, Integer> codPaisyArea;
 	public static volatile SingularAttribute<Contacto, Integer> id;
 	public static volatile SingularAttribute<Contacto, Integer> telefono;
 	public static volatile SingularAttribute<Contacto, String> email;

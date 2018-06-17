@@ -4,10 +4,13 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 //import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Past;
@@ -16,6 +19,7 @@ import javax.validation.constraints.Past;
 public class Cliente extends User {
 	
 	@Past
+	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
 
 	@OneToMany(mappedBy="cliente")
@@ -24,7 +28,7 @@ public class Cliente extends User {
 	@Transient
 	private Reserva reserva;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "idContacto")
 	private Contacto contacto;
 	

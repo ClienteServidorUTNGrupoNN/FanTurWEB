@@ -44,7 +44,7 @@ public class Contacto {
 	@NotNull
 	@Min(000000)
 	@Max(999999)
-	private int CodPaisyArea;
+	private int codPaisyArea;
 	
 	@NotNull
 	@Min(000000)
@@ -60,11 +60,11 @@ public class Contacto {
 	}
 
 	public int getCodPaisyArea() {
-		return CodPaisyArea;
+		return codPaisyArea;
 	}
 
 	public void setCodPaisyArea(int codPaisyArea) {
-		CodPaisyArea = codPaisyArea;
+		this.codPaisyArea = codPaisyArea;
 	}
 
 	public int getTelefono() {
@@ -97,5 +97,17 @@ public class Contacto {
 		this.setTelefono(telefono);
 		this.setPagina(pagina);
 	}
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("E-mail: ");
+		builder.append(getEmail());
+		builder.append(" Página: ");
+		builder.append(getPagina());
+		return builder.toString();
+	}
+	
 	
 }

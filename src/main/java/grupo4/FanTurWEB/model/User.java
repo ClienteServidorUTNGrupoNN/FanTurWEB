@@ -72,4 +72,22 @@ public abstract class User {
 		this.password = password;
 	}
 	
+	
+	
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Nombre: ");
+		builder.append(getNombre());
+		builder.append(" Apellido: ");
+		builder.append(getApellido());
+		return builder.toString();
+	}
+	
+	
+	
 }
