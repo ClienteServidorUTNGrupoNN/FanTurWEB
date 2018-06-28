@@ -10,43 +10,25 @@ import grupo4.FanTurWEB.model.Reserva;
 
 
 @Stateless
-public class ReservaDao extends AbstractDao<Reserva, Integer>implements  grupo4.FanTurWEB.model.dao.interfaces.Dao<Reserva,Integer> {
+public class ReservaDao extends AbstractDao<Reserva, Integer>implements  grupo4.FanTurWEB.model.dao.interfaces.ReservaDao {
 
 	@Override
 	protected Class<Reserva> getClazz() {
 		return Reserva.class;
 	}
 	
-	/* Si anda bien el AbstractDAO, todo esto no hace falta
-	 * Ni siquiera el persistence context, lo hereda
-	 * 
-	@PersistenceContext(unitName = "pu1")
-	private EntityManager em;
-	
+	/* OJO!!!!!!!
+	 * YO NO DEJARÍA MODIFICAR LA RESERVA
+	 * SALVO PARA CAMBIAR LA FECHA DE PAGO
+	 */
 	@Override
-	public void create(Reserva r) {
-		em.persist(r);
+	public void update(Integer id, Reserva nueva) {
+		Reserva actual = this.findById(id);
+		actual.setCliente(nueva.getCliente());
+		actual.setFechaPago(nueva.getFechaPago());
+		actual.setFechaReserva(nueva.getFechaReserva());
+		actual.setPaquete(nueva.getPaquete());
+		em.persist(nueva);
 	}
 	
-	@Override
-	public void update(Reserva r) {
-		em.persist(r);
-	}
-
-	@Override
-	public void delete(Reserva r) {
-		em.remove(r);
-	}
-	
-	@Override
-	public Reserva findById(Integer id) {
-		return em.find(Reserva.class, id);
-	}
-
-	@Override
-	public List<Reserva> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
 }

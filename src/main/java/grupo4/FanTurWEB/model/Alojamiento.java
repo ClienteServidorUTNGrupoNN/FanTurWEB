@@ -10,31 +10,9 @@ import javax.persistence.Id;
 public class Alojamiento {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private int id;
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Alojamiento other = (Alojamiento) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
 	private String servicio;
 	private int noches;
 	private double precio;
@@ -52,10 +30,6 @@ public class Alojamiento {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int alojamientoId) {
-		this.id = alojamientoId;
 	}
 
 	public String getServicio() {
@@ -81,5 +55,34 @@ public class Alojamiento {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alojamiento other = (Alojamiento) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Alojamiento [getId()=" + getId() + ", getServicio()=" + getServicio() + ", getNoches()=" + getNoches()
+				+ ", getPrecio()=" + getPrecio() + "]";
+	}
+	
 	
 }

@@ -5,48 +5,31 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import grupo4.FanTurWEB.model.Ubicacion;
 
 @Stateless
-public class UbicacionDao extends AbstractDao<Ubicacion, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Ubicacion, Integer> {
-
+//public class UbicacionDao extends AbstractDao<Ubicacion, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Ubicacion, Integer> {
+public class UbicacionDao extends AbstractDao<Ubicacion, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.UbicacionDao {
+	
 	@Override
 	protected Class<Ubicacion> getClazz() {
 		return Ubicacion.class;
 	}
 
-	/* Si anda bien el AbstractDAO, todo esto no hace falta
-	 * Ni siquiera el persistence context, lo hereda
-	 * 
-	@PersistenceContext(unitName = "pu1")
-	private EntityManager em;
-	
 	@Override
-	public void create(Ubicacion ubicacion) {
-		em.persist(ubicacion);
+	public void update(Integer id, Ubicacion nueva) {
+		Ubicacion actual = this.findById(id);
+		actual.setCalle(nueva.getCalle());
+		actual.setAltura(nueva.getAltura());
+		actual.setLocalidad(nueva.getLocalidad());
+		actual.setProvincia(nueva.getProvincia());
+		actual.setPais(nueva.getPais());
+		em.persist(actual);
 	}
-
-	@Override
-	public void update(Ubicacion ubicacion) {
-		em.persist(ubicacion);
-	}
-
-	@Override
-	public void delete(Ubicacion ubicacion) {
-		em.remove(ubicacion);
-	}
-
-	@Override
-	public Ubicacion findById(Integer id) {
-		return em.find(Ubicacion.class, id);
-	}
-
-	@Override
-	public List<Ubicacion> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
 
 }

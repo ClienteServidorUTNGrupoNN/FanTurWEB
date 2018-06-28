@@ -1,8 +1,11 @@
 package grupo4.FanTurWEB.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -16,29 +19,8 @@ import javax.persistence.JoinColumn;
 public class Paquete {
 
 	@Id
+	@GeneratedValue
 	private int id;
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Paquete other = (Paquete) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
 	
 	private double precio;
 	
@@ -55,7 +37,7 @@ public class Paquete {
 	@JoinTable(name="Paquete_Evento",
 	 joinColumns=@JoinColumn(name="ID_PAQUETE"),
 	 inverseJoinColumns=@JoinColumn(name="ID_EVENTO"))
-	private List<Evento> evento;
+	private List<Evento> eventos;
 	
 	@OneToOne
 	@JoinColumn
@@ -68,14 +50,14 @@ public class Paquete {
 	}
 
 	public Paquete(int id, double precio, int cantidad, List<Pasaje> pasajes, Alojamiento alojamiento,
-			List<Evento> evento, Admin admin) {
+			List<Evento> eventos, Admin admin) {
 		super();
 		this.id = id;
 		this.precio = precio;
 		this.cantidad = cantidad;
 		this.pasajes = pasajes;
 		this.alojamiento = alojamiento;
-		this.evento = evento;
+		this.eventos = eventos;
 		this.creadoPor = admin;
 	}
 
@@ -119,16 +101,52 @@ public class Paquete {
 		this.alojamiento = alojamiento;
 	}
 
-	public List<Evento> getEvento() {
-		return evento;
+	public List<Evento> getEventos() {
+		return eventos;
 	}
 
-	public void setEvento(List<Evento> evento) {
-		this.evento = evento;
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
+	
+	public void addEvento(Evento evento) {
+		if (this.getEventos() == null) {
+			this.setEventos(new LinkedList<Evento>());
+		}
+		this.eventos.add(evento);
 	}
 	
 	public Admin getCreadoPor() {
 		return this.creadoPor;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paquete other = (Paquete) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Paquete [getId()=" + getId() + ", getPrecio()=" + getPrecio() + ", getCantidad()=" + getCantidad()
+				+ ", getPasajes()=" + getPasajes() + ", getAlojamiento()=" + getAlojamiento() + ", getEvento()="
+				+ getEventos() + ", getCreadoPor()=" + getCreadoPor() + "]";
+	}
+	
 }

@@ -35,6 +35,7 @@
             <property name="hibernate.connection.charSet" value="UTF-8"/>
            <!-- property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/ -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+<!--             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
 
         </properties>
     </persistence-unit>

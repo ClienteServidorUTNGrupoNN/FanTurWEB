@@ -1,5 +1,8 @@
 package grupo4.FanTurWEB.model;
 
+import javax.ejb.Singleton;
+
+@Singleton
 public class FactoryReserva {
 
 	public static Reserva createReserva(Paquete paquete) {

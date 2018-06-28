@@ -1,5 +1,10 @@
 package grupo4.FanTurWEB.model.dao.interfaces;
 
-public class ReservaDao {
+import javax.ejb.Local;
+
+import grupo4.FanTurWEB.model.Reserva;
+
+@Local
+public interface ReservaDao extends Dao<Reserva, Integer>{
 
 }

@@ -2,6 +2,7 @@ package grupo4.FanTurWEB.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,28 +17,6 @@ public class Hotel {
 	@Id
 	@GeneratedValue
 	private int id;
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Hotel other = (Hotel) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
 
 	@NotNull
 	@Size(min = 2, max = 50)
@@ -103,4 +82,34 @@ public class Hotel {
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hotel other = (Hotel) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Hotel [getId()=" + getId() + ", getNombre()=" + getNombre() + ", getContacto()=" + getContacto()
+				+ ", getAloj()=" + getAloj() + ", getUbicacion()=" + getUbicacion() + "]";
+	}
+	
 }

@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import grupo4.FanTurWEB.model.Admin;
 
 @Local
-public interface AdminDao extends grupo4.FanTurWEB.model.dao.interfaces.Dao<Admin, Integer> {
+public interface AdminDao extends Dao<Admin, Integer> {
 
 	List<Admin> findByNombreApellido(String nombre, String apellido);
 	List<Admin> findByRegistradoPor(Admin admin);

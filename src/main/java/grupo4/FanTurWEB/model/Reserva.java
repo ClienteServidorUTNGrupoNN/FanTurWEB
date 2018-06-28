@@ -9,36 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-//import javax.persistence.Table;
 
 @Entity
 public class Reserva {
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private int id;
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Reserva other = (Reserva) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
 
 	@ManyToOne
 	@JoinColumn(name= "idCliente")
@@ -50,11 +27,20 @@ public class Reserva {
 	@JoinColumn(name = "PAQUETE_FK")
 	private Paquete paquete;
 	
+	public static Reserva createReserva(Paquete paquete, Cliente cliente) {
+		if (paquete.getCantidad() > 0 ) {
+			paquete.setCantidad(paquete.getCantidad()-1);
+			return new Reserva(paquete, cliente);
+		} else {
+			return null;
+		}
+	}
+	
 	public Reserva(){
 		super();
 	}
 
-	public Reserva(Cliente cliente, Paquete paquete) {
+	public Reserva(Paquete paquete, Cliente cliente) {
 		this.cliente = cliente;
 		this.paquete = paquete;
 	}
@@ -97,6 +83,34 @@ public class Reserva {
 
 	public void setPaquete(Paquete paquete) {
 		this.paquete = paquete;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reserva other = (Reserva) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Reserva [getId()=" + getId() + ", getCliente()=" + getCliente() + ", getFechaReserva()="
+				+ getFechaReserva() + ", getFechaPago()=" + getFechaPago() + ", getPaquete()=" + getPaquete() + "]";
 	}
 	
 }

@@ -22,40 +22,15 @@ public class EventoDao extends AbstractDao<Evento, Integer> implements grupo4.Fa
 		return Evento.class;
 	}
 	
-	/*
-	@PersistenceContext(unitName= "pu1")
-	private EntityManager em;
-	
 	@Override
-	public void create(Evento evento) {
-		em.persist(evento);
+	public void update(Integer id, Evento nuevo) {
+		Evento actual = this.findById(id);
+		actual.setDescripcion(nuevo.getDescripcion());
+		actual.setFecha(nuevo.getFecha());
+		actual.setLugar(nuevo.getLugar());
+		actual.setNroEnt(nuevo.getNroEnt());
+		actual.setPrecio(nuevo.getPrecio());
+		em.persist(actual);
 	}
 	
-	@Override
-	public void update(Evento evento) {
-		em.persist(evento);
-	}
-	
-	@Override
-	public void delete(Evento evento) {
-		em.remove(evento);
-	}
-	
-	@Override
-	public Evento findById(int id) {
-		return em.find(Evento.class, id);
-	}
-	
-	@Override
-	public List<Evento> findAll() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Evento> cq = cb.createQuery(Evento.class);
-		Root<Evento> a = cq.from(Evento.class);
-		cq.select(a);
-		TypedQuery<Evento> tq = em.createQuery(cq);
-		
-		return tq.getResultList();
-	}
-	*/
-
 }

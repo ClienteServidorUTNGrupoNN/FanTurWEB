@@ -3,14 +3,41 @@ package grupo4.FanTurWEB.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Servicio {
 
 	@Id
+	@GeneratedValue
 	private int id;
+	
+	@Enumerated(EnumType.STRING)
+	private EnumServicio detalle;
 
+	public int getId() {
+		return id;
+	}
+
+	public EnumServicio getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(EnumServicio detalle) {
+		this.detalle = detalle;
+	}
+	
+	public Servicio() {
+		super();
+	}
+	
+	public Servicio(EnumServicio detalle) {
+		super();
+		this.detalle = detalle;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -32,29 +59,10 @@ public class Servicio {
 			return false;
 		return true;
 	}
-	
-	@Enumerated(EnumType.STRING)
-	private EnumServicio detalle;
 
-	public int getId() {
-		return id;
-	}
-
-	public EnumServicio getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(EnumServicio detalle) {
-		this.detalle = detalle;
-	}
-
-	public Servicio(EnumServicio detalle) {
-		super();
-		this.detalle = detalle;
-	}
-	
-	public Servicio() {
-		super();
+	@Override
+	public String toString() {
+		return "Servicio [getId()=" + getId() + ", getDetalle()=" + getDetalle() + "]";
 	}
 	
 }

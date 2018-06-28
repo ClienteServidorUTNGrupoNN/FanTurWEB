@@ -19,7 +19,14 @@ import grupo4.FanTurWEB.model.Admin_;
 public class AdminDao extends AbstractDao<Admin, Integer>
 	implements grupo4.FanTurWEB.model.dao.interfaces.AdminDao {
 
-
+	@Override
+	public void update(Integer id, Admin nuevo) {
+		Admin actual = this.findById(id);
+		actual.setApellido(nuevo.getApellido());
+		actual.setNombre(nuevo.getNombre());
+		em.persist(actual);
+	}
+	
 	@Override
 	public List<Admin> findByNombreApellido(String nombre, String apellido) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();

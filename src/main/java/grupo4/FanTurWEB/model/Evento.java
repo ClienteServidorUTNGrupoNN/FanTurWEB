@@ -3,6 +3,8 @@ package grupo4.FanTurWEB.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -12,31 +14,9 @@ import javax.persistence.OneToOne;
 public class Evento {
 	
 	@Id
+	@GeneratedValue
 	private int id;
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Evento other = (Evento) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
 	private String descripcion;
 	private double precio;
 	private int nroEnt;
@@ -46,6 +26,9 @@ public class Evento {
 	private Ubicacion lugar;
 	private Date fecha;
 	
+	public Evento() {
+		super();
+	}
 	
 	public Evento(String descripcion, double precio, int nroEnt, Ubicacion lugar, Date fecha) {
 		this.descripcion = descripcion;
@@ -53,11 +36,6 @@ public class Evento {
 		this.nroEnt = nroEnt;
 		this.lugar = lugar;
 		this.fecha = fecha;
-	}
-
-	
-	public Evento() {
-		super();
 	}
 
 	public int getId() {
@@ -102,6 +80,34 @@ public class Evento {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Evento other = (Evento) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Evento [getId()=" + getId() + ", getDescripcion()=" + getDescripcion() + ", getPrecio()=" + getPrecio()
+				+ ", getNroEnt()=" + getNroEnt() + ", getLugar()=" + getLugar() + ", getFecha()=" + getFecha() + "]";
 	}
 	
 }

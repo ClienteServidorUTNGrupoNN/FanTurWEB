@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 import grupo4.FanTurWEB.model.dao.interfaces.Dao;
 
 @Stateless
-public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, Pk>  {
+public abstract class AbstractDao<T, Id extends Serializable> implements Dao<T, Id>  {
 
 	@PersistenceContext(unitName = "pu1")
 	protected EntityManager em;
@@ -25,8 +25,8 @@ public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, 
 	}
 
 	@Override
-	public void update(T obj) {
-		em.merge(obj);
+	public void update(Id id, T obj) {
+		
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, 
 	}
 
 	@Override
-	public T findById(Pk id) {
+	public T findById(Id id) {
 		return em.find(getClazz(), id);
 	}
 
@@ -50,7 +50,9 @@ public abstract class AbstractDao<T, Pk extends Serializable> implements Dao<T, 
 		return tq.getResultList();
 	}
 	
-	// pequeño yeite para que funcione este Generic DAO. Cada DAO lo redefine
+	/* Pequeño yeite para que funcione el criteria query.
+	 * Cada DAO lo redefine
+	 */
 	protected abstract Class<T> getClazz();
 
 }

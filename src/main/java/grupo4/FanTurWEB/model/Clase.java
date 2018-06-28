@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 //import javax.persistence.Table;
@@ -18,7 +20,46 @@ import javax.validation.constraints.NotNull;
 public class Clase {
 	
 	@Id
+	@GeneratedValue
 	private int id;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private TipoClase clase;
+	
+	@OneToMany
+	private List<Servicio> servicios;
+
+	public Clase() {
+		super();
+	}
+	
+	public Clase (TipoClase clase) {
+		this.setClase(clase);
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public TipoClase getClase() {
+		return clase;
+	}
+
+	public void setClase(TipoClase clase) {
+		this.clase = clase;
+	}
+	
+	public List<Servicio> getServicios(){
+		return servicios;
+	}
+	
+	public void addServicio(Servicio servicio) {
+		if (this.servicios == null) {
+			this.servicios = new LinkedList<Servicio>();
+		}
+		this.servicios.add(servicio);
+	}
 	
 	@Override
 	public int hashCode() {
@@ -42,40 +83,9 @@ public class Clase {
 		return true;
 	}
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private TipoClase clase;
-	
-//	@Enumerated(EnumType.STRING)
-	@OneToMany
-	private List<Servicio> servicios;
-
-	public TipoClase getClase() {
-		return clase;
-	}
-
-	public void setClase(TipoClase clase) {
-		this.clase = clase;
+	@Override
+	public String toString() {
+		return "Clase [getId()=" + getId() + ", getClase()=" + getClase() + ", getServicios()=" + getServicios() + "]";
 	}
 	
-	public List<Servicio> getServicios(){
-		return servicios;
-	}
-	
-	
-	public void addServicio(Servicio servicio) {
-		if (this.servicios == null) {
-			this.servicios = new LinkedList<Servicio>();
-		}
-		this.servicios.add(servicio);
-	}
-	
-	public Clase (TipoClase clase) {
-		this.setClase(clase);
-	}
-	
-	public Clase() {
-		super();
-	}
-
 }

@@ -18,6 +18,132 @@ public class Pasaje {
 	@GeneratedValue
 	private int id;
 	
+	@Enumerated(EnumType.STRING)
+	private TipoVehiculo vehiculo;
+	
+	@OneToOne
+	@JoinColumn(name = "idServicio")
+	private Clase clase;
+	
+	private Date ida;
+	
+	private Date idaLlegada;
+	
+	private Date vuelta;
+	
+	private Date vueltaLlegada;
+	
+	@OneToOne
+	private Ubicacion origen, destino;
+	
+	private int asiento;
+	
+	private double precio;
+	
+	@ManyToOne
+	@JoinColumn(name = "idPaquete")
+	private Paquete paquete;
+	
+	public Pasaje() {
+		super();
+	}
+	
+	public Pasaje(TipoVehiculo vehiculo, Clase clase, Date ida, Date idaLlegada, Date vuelta, Date vueltaLlegada,
+			Ubicacion origen, Ubicacion destino, int asiento, double precio, Paquete paquete) {
+		this.vehiculo = vehiculo;
+		this.clase = clase;
+		this.ida = ida;
+		this.idaLlegada = idaLlegada;
+		this.vuelta = vuelta;
+		this.vueltaLlegada = vueltaLlegada;
+		this.origen = origen;
+		this.destino = destino;
+		this.asiento = asiento;
+		this.precio = precio;
+		this.paquete = paquete;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public TipoVehiculo getVehiculo() {
+		return vehiculo;
+	}
+	public void setVehiculo(TipoVehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+	
+	public Clase getServicio() {
+		return clase;
+	}
+	public void setServicio(Clase servicio) {
+		this.clase = servicio;
+	}
+	
+	public Date getIda() {
+		return ida;
+	}
+	public void setIda(Date ida) {
+		this.ida = ida;
+	}
+	
+	public Date getIdaLlegada() {
+		return idaLlegada;
+	}
+	public void setIdaLlegada(Date idaLlegada) {
+		this.idaLlegada = idaLlegada;
+	}
+	
+	public Date getVuelta() {
+		return vuelta;
+	}
+	public void setVuelta(Date vuelta) {
+		this.vuelta = vuelta;
+	}
+	
+	public Date getVueltaLlegada() {
+		return vueltaLlegada;
+	}
+	public void setVueltaLlegada(Date vueltaLlegada) {
+		this.vueltaLlegada = vueltaLlegada;
+	}
+	
+	public Ubicacion getOrigen() {
+		return origen;
+	}
+	public void setOrigen(Ubicacion origen) {
+		this.origen = origen;
+	}
+	
+	public Ubicacion getDestino() {
+		return destino;
+	}
+	public void setDestino(Ubicacion destino) {
+		this.destino = destino;
+	}
+	
+	public int getAsiento() {
+		return asiento;
+	}
+	public void setAsiento(int asiento) {
+		this.asiento = asiento;
+	}
+	
+	public double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+	
+	public Paquete getPaquete() {
+		return paquete;
+	}
+	public void setPaquete(Paquete paquete) {
+		this.paquete = paquete;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -40,103 +166,13 @@ public class Pasaje {
 		return true;
 	}
 
-	@Enumerated(EnumType.STRING)
-	private TipoVehiculo vehiculo;
-	
-	@OneToOne
-	@JoinColumn(name = "idServicio")
-	private Clase clase;
-	
-	private Date partida;
-	
-	private Date fechaVuelta;
-	
-	@OneToOne
-	private Ubicacion origen, destino;
-	
-	private int asiento;
-	
-	private double precio;
-	
-	@ManyToOne
-	@JoinColumn(name = "idPaquete")
-	private Paquete paquete;
-	
-	public int getId() {
-		return id;
-	}
-	public void setNumPasaje(int numPasaje) {
-		this.id = numPasaje;
-	}
-	public TipoVehiculo getVehiculo() {
-		return vehiculo;
-	}
-	public void setVehiculo(TipoVehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-	public Clase getServicio() {
-		return clase;
-	}
-	public void setServicio(Clase servicio) {
-		this.clase = servicio;
-	}
-	public Date getPartida() {
-		return partida;
-	}
-	public void setFechaPartida(Date partida) {
-		this.partida = partida;
-	}
-	public Date getFechaVuelta() {
-		return fechaVuelta;
-	}
-	public void setFechaVuelta(Date fechaVuelta) {
-		this.fechaVuelta = fechaVuelta;
-	}
-	public Ubicacion getOrigen() {
-		return origen;
-	}
-	public void setOrigen(Ubicacion origen) {
-		this.origen = origen;
-	}
-	public Ubicacion getDestino() {
-		return destino;
-	}
-	public void setDestino(Ubicacion destino) {
-		this.destino = destino;
-	}
-	public int getAsiento() {
-		return asiento;
-	}
-	public void setAsiento(int asiento) {
-		this.asiento = asiento;
-	}
-	public double getPrecio() {
-		return precio;
-	}
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-	public Paquete getPaquete() {
-		return paquete;
-	}
-	public void setPaquete(Paquete paquete) {
-		this.paquete = paquete;
-	}
-	public Pasaje(TipoVehiculo vehiculo, Clase clase, Date fechaPartida, Date fechaVuelta,
-			Ubicacion origen, Ubicacion destino, int asiento, double precio, Paquete paquete) {
-		this.vehiculo = vehiculo;
-		this.clase = clase;
-		this.partida = fechaPartida;
-		this.fechaVuelta = fechaVuelta;
-		this.origen = origen;
-		this.destino = destino;
-		this.asiento = asiento;
-		this.precio = precio;
-		this.paquete = paquete;
+	@Override
+	public String toString() {
+		return "Pasaje [getId()=" + getId() + ", getVehiculo()=" + getVehiculo() + ", getServicio()=" + getServicio()
+				+ ", getIda()=" + getIda() + ", getIdaLlegada()=" + getIdaLlegada() + ", getVuelta()=" + getVuelta()
+				+ ", getVueltaLlegada()=" + getVueltaLlegada() + ", getOrigen()=" + getOrigen() + ", getDestino()="
+				+ getDestino() + ", getAsiento()=" + getAsiento() + ", getPrecio()=" + getPrecio() + ", getPaquete()="
+				+ getPaquete() + "]";
 	}
 	
-	public Pasaje() {
-		super();
-	}
-
 }

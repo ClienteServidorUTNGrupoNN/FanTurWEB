@@ -21,41 +21,14 @@ public class HotelDao extends AbstractDao<Hotel, Integer> implements grupo4.FanT
 		return Hotel.class;
 	}
 	
-	/* Si anda bien el AbstractDAO, todo esto no hace falta
-	 * Ni siquiera el persistence context, lo hereda
-	 * 
-	@PersistenceContext(unitName = "pu1")
-	private EntityManager em;
-	
 	@Override
-	public void create(Hotel h) {
-	em.persist(h);
+	public void update(Integer id, Hotel nuevo) {
+		Hotel actual = this.findById(id);
+		actual.setAloj(nuevo.getAloj());
+		actual.setContacto(nuevo.getContacto());
+		actual.setNombre(nuevo.getNombre());
+		actual.setUbicacion(nuevo.getUbicacion());
+		em.persist(actual);
 	}
 	
-	@Override
-	public void delete(Hotel h) {
-	em.remove(h);
-	}
-	
-	@Override
-	public void update(Hotel h) {
-		em.persist(h);
-	}
-	
-	@Override
-	public Hotel findById(Integer id) {
-		return em.find(Hotel.class, id);
-	}
-	
-	@Override
-	public List<Hotel> findAll() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Hotel> cq = cb.createQuery(Hotel.class);
-		Root<Hotel> a = cq.from(Hotel.class);
-		cq.select(a);
-		TypedQuery<Hotel> tq = em.createQuery(cq);
-		
-		return tq.getResultList();
-	}
-	*/
 }

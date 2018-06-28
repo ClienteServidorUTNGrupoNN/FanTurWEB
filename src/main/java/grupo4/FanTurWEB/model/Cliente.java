@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,7 +23,7 @@ public class Cliente extends User {
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
 
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", fetch=FetchType.EAGER)
 	private List<Reserva> reservas;
 	
 	@Transient
@@ -36,10 +37,9 @@ public class Cliente extends User {
 		super();
 	}
 	
-	public Cliente(String nombre,String apellido,String password, Date nacimiento, List<Reserva> reservas, Contacto contacto) {
-		super(nombre,apellido,password);
+	public Cliente(String nombre, String apellido, String user,String password, Date nacimiento, Contacto contacto) {
+		super(nombre, apellido, user, password);
 		this.nacimiento = nacimiento;
-		this.reservas = reservas;
 		this.contacto = contacto;
 	}
 
@@ -64,7 +64,8 @@ public class Cliente extends User {
 	}
 
 	public void reservar(Paquete paquete) {
-		reserva = FactoryReserva.createReserva(paquete);
+//		reserva = FactoryReserva.createReserva(paquete);
+		reserva = Reserva.createReserva(paquete, this);
 		if (reserva != null) {
 			if (this.reservas == null) {
 				this.reservas = new LinkedList<Reserva>();
@@ -73,5 +74,12 @@ public class Cliente extends User {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Cliente [getNacimiento()=" + getNacimiento() + ", getContacto()=" + getContacto() + ", toString()="
+				+ super.toString() + "]";
+	}
+	
+	
 
 }

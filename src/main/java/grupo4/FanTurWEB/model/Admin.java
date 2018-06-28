@@ -21,40 +21,35 @@ public class Admin extends User {
 		super();
 	}
 
-	public Admin(String nombre, String apellido, String password, Admin registradoPor) {
-		super(nombre,apellido,password);
+	public Admin(String nombre, String apellido, String user,String password, Admin registradoPor) {
+		super(nombre, apellido, user, password);
 		this.registradoPor = registradoPor;
 	}
-
+	
 	public Admin getRegistradoPor() {
 		return registradoPor;
 	}
 
-//	public void setRegistradoPor(Admin registradoPor) {
-//		this.registradoPor = registradoPor;
-//	}
-
 	public List<Admin> getListaAdmin() {
 		return listaAdmin;
 	}
-
-	/*
-	public void setAdminregistradoporMi(List<Admin> adminregistradoporMi) {
-		this.adminregistradoporMi = adminregistradoporMi;
-	}
-	*/
 	
 	public void registrarAdmin(Admin newAdmin ) {
 		if (this.listaAdmin == null) {
 			this.listaAdmin = new LinkedList<Admin>();
 		}
 		newAdmin.registradoPor = this;
-		this.listaAdmin.add(newAdmin);
-		
+		this.listaAdmin.add(newAdmin);	
 	}
 	
 	public void crearPaquete() {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "Admin [getRegistradoPor()=" + getRegistradoPor() + ", getListaAdmin()=" + getListaAdmin()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
 }

@@ -13,47 +13,18 @@ import javax.persistence.criteria.Root;
 import grupo4.FanTurWEB.model.Servicio;
 
 @Stateless
-public class ServicioDao extends AbstractDao<Servicio, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Servicio,Integer> {
+public class ServicioDao extends AbstractDao<Servicio, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.ServicioDao {
 
 	@Override
 	protected Class<Servicio> getClazz() {
 		return Servicio.class;
 	}
 
-	/* Si anda bien el AbstractDAO, todo esto no hace falta
-	 * Ni siquiera el persistence context, lo hereda
-	@PersistenceContext(unitName = "pu1")
-	EntityManager em;
-	
 	@Override
-	public void create(Servicio servicio) {
-		em.persist(servicio);
+	public void update(Integer id, Servicio nuevo) {
+		Servicio actual = this.findById(id);
+		actual.setDetalle(nuevo.getDetalle());
+		em.persist(actual);
 	}
-
-	@Override
-	public void update(Servicio servicio) {
-		em.persist(servicio);
-	}
-
-	@Override
-	public void delete(Servicio servicio) {
-		em.remove(servicio);
-	}
-
-	@Override
-	public Servicio findById(Integer id) {
-		return em.find(Servicio.class, id);
-	}
-
-	@Override
-	public List<Servicio> findAll() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Servicio> cq = cb.createQuery(Servicio.class);
-		Root<Servicio> c = cq.from(Servicio.class);
-		cq.select(c);
-		TypedQuery<Servicio> tq = em.createQuery(cq);
-		return tq.getResultList();
-	}
-	*/
 	
 }

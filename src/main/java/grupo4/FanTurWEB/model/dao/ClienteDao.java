@@ -17,43 +17,16 @@ import grupo4.FanTurWEB.model.Cliente_;
 @Stateless
 public class ClienteDao extends AbstractDao<Cliente, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.ClienteDao {
 
-	/* Si anduvo bien el AbstractDao, todo este bloque es innecesario
-	 * ni el persistence context se necesitaria 
-	 * 
-
-	@PersistenceContext(unitName = "pu1")
-	EntityManager em;
-	
 	@Override
-	public void create(Cliente cliente) {
-		em.persist(cliente);
+	public void update(Integer id, Cliente nuevo) {
+		Cliente actual = this.findById(id);
+		actual.setApellido(nuevo.getApellido());
+		actual.setNombre(nuevo.getNombre());
+		actual.setContacto(nuevo.getContacto());
+		actual.setUser(nuevo.getUser());
+		em.persist(actual);
 	}
 
-	@Override
-	public void update(Cliente cliente) {
-		em.persist(cliente);
-	}
-
-	@Override
-	public void delete(Cliente cliente) {
-		em.remove(cliente);
-	}
-
-	@Override
-	public Cliente findById(Integer id) {
-		return em.find(Cliente.class, id);
-	}
-
-	@Override
-	public List<Cliente> findAll() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
-		Root<Cliente> c = cq.from(Cliente.class);
-		cq.select(c);
-		TypedQuery<Cliente> tq = em.createQuery(cq);
-		return tq.getResultList();
-	}
-*/
 	@Override
 	public List<Cliente> findByNombreApellido(String nombre, String apellido) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();

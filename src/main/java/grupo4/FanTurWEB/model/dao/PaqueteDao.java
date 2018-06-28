@@ -14,49 +14,22 @@ import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Paquete;
 
 @Stateless
-public class PaqueteDao extends AbstractDao<Paquete, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.Dao<Paquete,Integer> {
+public class PaqueteDao extends AbstractDao<Paquete, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.PaqueteDao {
 
 	@Override
 	protected Class<Paquete> getClazz() {
 		return Paquete.class;
 	}
 
-	/* Si anda bien el AbstractDAO, todo esto no hace falta
-	 * Ni siquiera el persistence context, lo hereda
-	 * 
-	@PersistenceContext(unitName = "pu1")
-	private EntityManager em;
-	
 	@Override
-	public void create(Paquete p) {
-		em.persist(p);
+	public void update(Integer id, Paquete nuevo) {
+		Paquete actual = this.findById(id);
+		actual.setAlojamiento(nuevo.getAlojamiento());
+		actual.setCantidad(nuevo.getCantidad());
+		actual.setEventos(nuevo.getEventos());
+		actual.setPasajes(nuevo.getPasajes());
+		actual.setPrecio(nuevo.getPrecio());
+		em.persist(actual);
 	}
-	
-	@Override
-	public void update(Paquete p) {
-		em.persist(p);
-	}
-	
-	@Override
-	public void delete(Paquete p){
-		em.remove(p);
-	}
-	
-	@Override
-	public Paquete findById(Integer id) {
-		return em.find(Paquete.class, id);
-	}
-
-	@Override
-	public List<Paquete> findAll() {
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Paquete> cq = cb.createQuery(Paquete.class);
-		Root<Paquete> a = cq.from(Paquete.class);
-		cq.select(a);
-		TypedQuery<Paquete> tq = em.createQuery(cq);
 		
-		return tq.getResultList();
-	}
-	*/
-	
 }

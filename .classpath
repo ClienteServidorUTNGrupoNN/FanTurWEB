@@ -29,10 +29,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<!--
-	<classpathentry kind="lib" path="C:/Users/Nico/Desktop/javax.ejb.jar/javax.ejb.jar"/>
-	-->
-	<classpathentry kind="src" path="target/generated-sources/annotations">
+	<classpathentry kind="src" path="target/metamodel">
 		<attributes>
 			<attribute name="optional" value="true"/>
 		</attributes>

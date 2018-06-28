@@ -1,10 +1,13 @@
 package grupo4.FanTurWEB.model.dao.interfaces;
 
+import javax.ejb.Local;
+
 import grupo4.FanTurWEB.model.Ubicacion;
 
-public interface UbicacionDao {
+@Local
+public interface UbicacionDao extends Dao<Ubicacion, Integer>{
 
 	void create(Ubicacion ubicacion);
-	void update(Ubicacion ubicacion);
+	void update(Integer id, Ubicacion ubicacion);
 	void delete(Ubicacion ubicacion);
 }

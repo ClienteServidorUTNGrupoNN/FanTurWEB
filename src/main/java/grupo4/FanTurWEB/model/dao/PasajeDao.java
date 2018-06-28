@@ -18,34 +18,21 @@ public class PasajeDao extends AbstractDao<Pasaje, Integer> implements grupo4.Fa
 		return Pasaje.class;
 	}
 
-	/* Si anda bien el AbstractDAO, todo esto no hace falta
-	 * Ni siquiera el persistence context, lo hereda
-	 * 
-	@PersistenceContext(unitName = "pu1")
-	private EntityManager em;
-	
 	@Override
-	public void create(Pasaje p) {
-		em.persist(p);
+	public void update(Integer id, Pasaje nuevo) {
+		Pasaje actual = this.findById(id);
+		actual.setAsiento(nuevo.getAsiento());
+		actual.setDestino(nuevo.getDestino());
+		actual.setIda(nuevo.getIda());
+		actual.setIdaLlegada(nuevo.getIdaLlegada());
+		actual.setVuelta(nuevo.getVuelta());
+		actual.setVueltaLlegada(nuevo.getVueltaLlegada());
+		actual.setOrigen(nuevo.getOrigen());
+		actual.setPaquete(nuevo.getPaquete());
+		actual.setPrecio(nuevo.getPrecio());
+		actual.setServicio(nuevo.getServicio());
+		actual.setVehiculo(nuevo.getVehiculo());
+		em.persist(actual);
 	}
 	
-	public void delete(Pasaje p) {
-		em.remove(p);
-	}
-	
-	@Override
-	public void update(Pasaje p) {
-		em.persist(p);
-	}	
-
-	public Pasaje findById(Integer id) {
-		return em.find(Pasaje.class, id);
-	}
-	
-
-	public List<Pasaje> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
 }
