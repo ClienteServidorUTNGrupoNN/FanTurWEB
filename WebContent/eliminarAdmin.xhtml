@@ -17,11 +17,11 @@
 		<p:fieldset legend="Ingresar Id del Admin">
 		
 			<p:outputLabel value="Id" />
-			<p:inputText value="#{usuarioCont.id_admin}" />
+			<p:inputText value="#{adminCtrl.id}" />
 			
 		</p:fieldset>
 		
-		<p:commandButton value="Borrar" action="#{usuarioCont.eliminar}" />
+		<p:commandButton value="Borrar" action="#{adminCtrl.delete}" />
 	
 	</h:form>
 </body>
