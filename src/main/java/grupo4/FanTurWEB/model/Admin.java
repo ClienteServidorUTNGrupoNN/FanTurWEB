@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.Table;
@@ -14,7 +15,7 @@ public class Admin extends User {
 	@ManyToOne
 	private Admin registradoPor;
 	
-	@OneToMany(mappedBy="registradoPor")
+	@OneToMany(mappedBy="registradoPor", fetch=FetchType.EAGER)
 	private List<Admin> listaAdmin;
 	
 	public Admin() {

@@ -2,6 +2,7 @@ package grupo4.FanTurWEB.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Evento {
 	private double precio;
 	private int nroEnt;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "UBICACION_FK")
 	private Ubicacion lugar;
 	private Date fecha;

@@ -1,10 +1,14 @@
 package grupo4.FanTurWEB.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Alojamiento {
@@ -16,9 +20,26 @@ public class Alojamiento {
 	private String servicio;
 	private int noches;
 	private double precio;
+	@OneToMany(mappedBy="aloj")
+	private List<Hotel> hoteles;
 	
 	public Alojamiento() {
 		super();
+	}
+
+	public List<Hotel> getHoteles() {
+		return hoteles;
+	}
+
+	public void setHoteles(List<Hotel> hoteles) {
+		this.hoteles = hoteles;
+	}
+	
+	public void addHotel(Hotel hotel) {
+		if (hoteles == null) {
+			this.hoteles = new LinkedList<Hotel>();
+		}
+		this.hoteles.add(hotel);
 	}
 
 	public Alojamiento(String servicio, int noches, double precio) {

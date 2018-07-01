@@ -30,7 +30,6 @@ public class PaqueteCont implements Serializable{
 	private PaqueteDao paqueteEJB;
 	@Inject
 	private Conversation conversacion;
-	private Paquete paquete;	
 	private Alojamiento alojamiento;
 	private Evento evento;
 	private List<Evento> eventos;
@@ -56,7 +55,8 @@ public class PaqueteCont implements Serializable{
 		this.hoteles = hoteles;
 	}
 
-
+	private Paquete paquete;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -102,7 +102,7 @@ public class PaqueteCont implements Serializable{
 	}
 	
 	public void setearHotel(Hotel hotelSel) {
-		paquete.getAlojamiento().getHoteles().add(hotelSel);
+		hoteles.add(hotelSel);
 	}
 	
 	public void setearEvento(Evento eventoSel) {
@@ -112,7 +112,8 @@ public class PaqueteCont implements Serializable{
 	public List<Evento> listarEventos() {
 		return eventoEJB.findAll();
 	}
-	public String agregarHoteles() {			
+	public String agregarHoteles() {		
+		paquete.getAlojamiento().setHoteles(hoteles);		
 		return "continuar";
 	}
 	

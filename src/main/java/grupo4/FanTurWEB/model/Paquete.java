@@ -3,6 +3,7 @@ package grupo4.FanTurWEB.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Paquete {
 	@OneToMany(mappedBy="paquete")
 	private List<Pasaje> pasajes;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ALOJAMIENTO_ID")
 	private Alojamiento alojamiento;
 	

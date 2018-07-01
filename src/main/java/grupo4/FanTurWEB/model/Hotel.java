@@ -1,5 +1,6 @@
 package grupo4.FanTurWEB.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +24,11 @@ public class Hotel {
 	private String nombre;
 	
 	@NotNull
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idContacto")
 	private Contacto contacto;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "UBICACION_FK")
 	private Ubicacion ubicacion;
 	

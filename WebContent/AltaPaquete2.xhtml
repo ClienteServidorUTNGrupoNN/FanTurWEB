@@ -14,15 +14,16 @@
 
 <body>
 
-	<h:form>	
-
-		<p:outputLabel id="serv" value="Servicio" />
-		<p:inputText for="serv" value="#{paqueteCont.paquete.alojamiento.servicio}" />
-		<p:outputLabel id="noches" value="Noches" />
-		<p:inputText for="noches" value="#{paqueteCont.paquete.alojamiento.noches}" />
-		<p:outputLabel id="precio"	value="Precio" />
-		<p:inputText for="precio" value="#{paqueteCont.paquete.alojamiento.precio}" />
-
+	<h:form>
+	
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Servicio" />
+		<p:inputText value="#{paqueteCont.paquete.alojamiento.servicio}" />
+		<p:outputLabel value="Noches" />
+		<p:inputText value="#{paqueteCont.paquete.alojamiento.noches}" />
+		<p:outputLabel	value="Precio" />
+		<p:inputText value="#{paqueteCont.paquete.alojamiento.precio}" />
+	</p:panelGrid>
 	
 	</h:form>
 	
@@ -44,7 +45,7 @@
 	
 	<br/>
 	<h:form id="frm2">
-	<p:dataTable id="tabla2" colums="3" var="hotel2" value="#{paqueteCont.paquete.alojamiento.hoteles}">		
+	<p:dataTable id="tabla2" colums="3" var="hotel2" value="#{paqueteCont.hoteles}">		
 		<p:column headerText="Nombre">
 			<p:outputLabel value="#{hotel2.nombre}" />
 		</p:column>
