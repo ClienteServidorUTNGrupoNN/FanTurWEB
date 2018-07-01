@@ -16,6 +16,10 @@ public abstract class Ctrl<Model> {
 	protected Response response;
 	protected Model modelObj;
 	protected String id;
+	protected String afterCreate;
+	protected String afterUpdate;
+	protected String afterDelete;
+	// afterChabon
 	
 	public Model getModelObj() {
 		return modelObj;
@@ -48,18 +52,18 @@ public abstract class Ctrl<Model> {
 	public String create() {
 		invocation = webTarget.request().buildPost(Entity.entity(modelObj, MediaType.APPLICATION_JSON));
 		response = invocation.invoke();
-		return "creado, papu";
+		return afterCreate;
 	}
 	
 	public String update() {
 		invocation = webTarget.request().buildPut(Entity.entity(modelObj, MediaType.APPLICATION_JSON));
 		response = invocation.invoke();
-		return "actualizado, papu";
+		return afterUpdate;
 	}
 	
 	public String delete() {
 		invocation = webTarget.path(id).request().buildDelete();
 		response = invocation.invoke();
-		return "eliminado, papu";
+		return afterDelete;
 	}
 }
