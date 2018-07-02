@@ -62,11 +62,9 @@ public class HotelCont implements Serializable {
 		hotel.setContacto(contacto);
 		hotel.setUbicacion(ubicacion);
 		hotelEJB.create(hotel);
-		return "succes";
+		return "indexAdmin.xhtml";
 		
 	}
 	
-	public List<Hotel> encontrarTodos() {
-		return hotelEJB.findAll();
-	}
+
 }

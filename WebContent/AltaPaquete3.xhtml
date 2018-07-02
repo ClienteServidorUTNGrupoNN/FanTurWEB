@@ -14,9 +14,9 @@
 
 <body>
 
-	<h:form>
+	<h:form id="frm1">
 	
-	<p:dataTable colums="3" var="evento" value="#{paqueteCont.listarEventos()}">
+	<p:dataTable id="tabla1" var="evento" value="#{paqueteCont.eventos}">
 		<p:column headerText="Nombre">
 			<p:outputLabel value="#{evento.descripcion}" />
 		</p:column>
@@ -24,14 +24,25 @@
 			<p:outputLabel value="#{evento.lugar.pais}" />
 		</p:column>
 		<p:column>
-			<p:commandButton actionListener="#{paqueteCont.setearEvento(evento)}" />
+			<p:commandButton value="Agregar" actionListener="#{paqueteCont.cargarEvento(evento)}" update=":frm:tabla,:frm1:tabla1"/>
 		</p:column>
 		
 	</p:dataTable>
-	
+	</h:form>
+	<br/>
+	<h:form id="frm">
+		<p:dataTable id="tabla" var="ev" value="#{paqueteCont.eventos2}">
+			<p:column headerText="Nombre">
+				<p:outputLabel value="#{ev.descripcion}" />
+			</p:column>
+			<p:column headerText="Pais">
+				<p:outputLabel value="#{ev.lugar.pais}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<br/>
+	<h:form>
 	<p:commandButton value="Continuar" action="#{paqueteCont.crearPaquete}" />	
-		
-		
 	</h:form>
 
 

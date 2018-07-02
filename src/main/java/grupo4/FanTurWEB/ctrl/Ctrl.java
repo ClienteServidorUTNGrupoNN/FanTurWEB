@@ -1,9 +1,13 @@
 package grupo4.FanTurWEB.ctrl;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -37,16 +41,16 @@ public abstract class Ctrl<Model> {
 		this.id = id;
 	}
 	
-	public String get() {
+	public Response get() {
 		invocation = webTarget.path(id).request().buildGet();
 		response = invocation.invoke();
-		return "este";
-	}
+		return response;
+		}
 	
-	public String getAll() {
+	public Set<Model> getAll() {
 		invocation = webTarget.request().buildGet();
 		response = invocation.invoke();
-		return "todos";
+		return response.readEntity(new GenericType<Set<Model>>() {});
 	}
 	
 	public String create() {
@@ -56,7 +60,7 @@ public abstract class Ctrl<Model> {
 	}
 	
 	public String update() {
-		invocation = webTarget.request().buildPut(Entity.entity(modelObj, MediaType.APPLICATION_JSON));
+		invocation = webTarget.path(id).request().buildPut(Entity.json(modelObj) );
 		response = invocation.invoke();
 		return afterUpdate;
 	}

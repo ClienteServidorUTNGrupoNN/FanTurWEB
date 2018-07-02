@@ -14,21 +14,19 @@
 	<h:form >
 		<p:tieredMenu>
 			<p:submenu label="Administradores">
-				<p:menuitem value="Crear" outcome="crearAdmin" />
-				<p:menuitem value="Modificar" />
-				<p:menuitem value="Eliminar" outcome="eliminarAdmin" />				
+				<p:menuitem value="Crear" action="altaAdmin.xhtml" />
+				<p:menuitem value="Gestionar" action="GestionarAdmin.xhtml"/>
+								
 			</p:submenu>
 		
 			<p:submenu label="Paquetes">
-				<p:menuitem value="Alta" action="#{paqueteCont.empezar}"/>
-				<p:menuitem value="Modificar" />
-				<p:menuitem value="Eliminar" />	
+				<p:menuitem value="Alta" action="altaPaquete1.xhtml"/>
+				<p:menuitem value="Gestionar" action="GestionarHoteles.xhtml" />					
 			</p:submenu>
 			
 			<p:submenu label="Hoteles" >
 				<p:menuitem value="Alta" outcome="crearHotel" />
-				<p:menuitem value="Modificar" />
-				<p:menuitem value="Eliminar" />	
+				<p:menuitem value="Gestionar" action="GestionarHoteles.xhtml" />				
 			</p:submenu>
 				<p:submenu label="Eventos">
 				<p:menuitem value="Alta" outcome="crearEvento"/>

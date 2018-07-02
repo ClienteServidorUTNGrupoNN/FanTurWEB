@@ -1,9 +1,12 @@
 package grupo4.FanTurWEB.model;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,27 +20,31 @@ public class Alojamiento {
 	@GeneratedValue
 	private int id;
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String servicio;
 	private int noches;
 	private double precio;
-	@OneToMany(mappedBy="aloj")
-	private List<Hotel> hoteles;
+	@OneToMany(mappedBy="aloj",fetch = FetchType.EAGER)
+	private Set<Hotel> hoteles;
 	
 	public Alojamiento() {
 		super();
 	}
 
-	public List<Hotel> getHoteles() {
+	public Set<Hotel> getHoteles() {
 		return hoteles;
 	}
 
-	public void setHoteles(List<Hotel> hoteles) {
+	public void setHoteles(Set<Hotel> hoteles) {
 		this.hoteles = hoteles;
 	}
 	
 	public void addHotel(Hotel hotel) {
 		if (hoteles == null) {
-			this.hoteles = new LinkedList<Hotel>();
+			this.hoteles = new HashSet<Hotel>();
 		}
 		this.hoteles.add(hotel);
 	}
@@ -101,9 +108,16 @@ public class Alojamiento {
 	
 	@Override
 	public String toString() {
-		return "Alojamiento [getId()=" + getId() + ", getServicio()=" + getServicio() + ", getNoches()=" + getNoches()
-				+ ", getPrecio()=" + getPrecio() + "]";
-	}
-	
+		StringBuilder builder = new StringBuilder();
+		builder.append("Servicios: ");
+		builder.append(getServicio());
+		builder.append("Noches: ");
+		builder.append(getNoches());
+		builder.append("Precio: ");
+		builder.append(getPrecio());
+		builder.append("Hoteles: ");
+		builder.append(getHoteles().size());
+		return builder.toString();
+	}	
 	
 }

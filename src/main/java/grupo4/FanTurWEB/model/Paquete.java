@@ -1,10 +1,13 @@
 package grupo4.FanTurWEB.model;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,18 +30,18 @@ public class Paquete {
 	
 	private int cantidad;
 	
-	@OneToMany(mappedBy="paquete")
+	@OneToMany(mappedBy="paquete",fetch  =FetchType.EAGER)
 	private List<Pasaje> pasajes;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ALOJAMIENTO_ID")
 	private Alojamiento alojamiento;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="Paquete_Evento",
 	 joinColumns=@JoinColumn(name="ID_PAQUETE"),
 	 inverseJoinColumns=@JoinColumn(name="ID_EVENTO"))
-	private List<Evento> eventos;
+	private Set<Evento> eventos;
 	
 	@OneToOne
 	@JoinColumn
@@ -46,12 +49,24 @@ public class Paquete {
 	
 	private String autorizado;
 	
+	public String getAutorizado() {
+		return autorizado;
+	}
+
+	public void setAutorizado(String autorizado) {
+		this.autorizado = autorizado;
+	}
+
+	public void setCreadoPor(Admin creadoPor) {
+		this.creadoPor = creadoPor;
+	}
+
 	public Paquete() {
 		super();
 	}
 
 	public Paquete(int id, double precio, int cantidad, List<Pasaje> pasajes, Alojamiento alojamiento,
-			List<Evento> eventos, Admin admin) {
+			Set<Evento> eventos, Admin admin) {
 		super();
 		this.id = id;
 		this.precio = precio;
@@ -102,17 +117,17 @@ public class Paquete {
 		this.alojamiento = alojamiento;
 	}
 
-	public List<Evento> getEventos() {
+	public Set<Evento> getEventos() {
 		return eventos;
 	}
 
-	public void setEventos(List<Evento> eventos) {
+	public void setEventos(Set<Evento> eventos) {
 		this.eventos = eventos;
 	}
 	
 	public void addEvento(Evento evento) {
 		if (this.getEventos() == null) {
-			this.setEventos(new LinkedList<Evento>());
+			this.setEventos(new HashSet<Evento>());
 		}
 		this.eventos.add(evento);
 	}
@@ -149,5 +164,5 @@ public class Paquete {
 				+ ", getPasajes()=" + getPasajes() + ", getAlojamiento()=" + getAlojamiento() + ", getEvento()="
 				+ getEventos() + ", getCreadoPor()=" + getCreadoPor() + "]";
 	}
-	
+
 }

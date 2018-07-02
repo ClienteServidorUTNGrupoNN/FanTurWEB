@@ -18,27 +18,27 @@
 		<p:fieldset legend="Ingresar Datos del nuevo Administrador">
 			<p:panelGrid columns="1">
 				<p:outputLabel value="Descripcion" />
-				<p:inputText value="#{eventoCont.evento.descripcion}"/>
+				<p:inputText value="#{eventoCtrl.modelObj.descripcion}"/>
 				<p:outputLabel value="Precio" />
-				<p:inputText value="#{eventoCont.evento.precio}"/>
+				<p:inputText value="#{eventoCtrl.modelObj.precio}"/>
 				<p:outputLabel value="Numero de Entrada" />
-				<p:inputText value="#{eventoCont.evento.nroEnt}"/>
+				<p:inputText value="#{eventoCtrl.modelObj.nroEnt}"/>
 				<p:outputLabel value="Calle" />
-				<p:inputText value="#{eventoCont.ubicacion.calle}"/>
+				<p:inputText value="#{eventoCtrl.ubicacion.calle}"/>
 				<p:outputLabel value="Altura" />
-				<p:inputText value="#{eventoCont.ubicacion.altura}"/>
+				<p:inputText value="#{eventoCtrl.ubicacion.altura}"/>
 				<p:outputLabel value="Localidad" />
-				<p:inputText value="#{eventoCont.ubicacion.localidad}"/>
+				<p:inputText value="#{eventoCtrl.ubicacion.localidad}"/>
 				<p:outputLabel value="Provincia" />
-				<p:inputText value="#{eventoCont.ubicacion.provincia}"/>
+				<p:inputText value="#{eventoCtrl.ubicacion.provincia}"/>
 				<p:outputLabel value="Pais" />
-				<p:inputText value="#{eventoCont.ubicacion.pais}"/>
+				<p:inputText value="#{eventoCtrl.ubicacion.pais}"/>
 				<p:outputLabel value="Fecha del Evento" />
-				<p:calendar value="#{eventoCont.evento.fecha}"/>
+				<p:calendar value="#{eventoCtrl.modelObj.fecha}"/>
 								
 		
 			</p:panelGrid>
-			<p:commandButton value="Registrar" action="#{eventoCont.crearEvento}" />		
+			<p:commandButton value="Registrar" action="#{eventoCtrl.create}" />		
 		</p:fieldset>
 		
 	</h:form>

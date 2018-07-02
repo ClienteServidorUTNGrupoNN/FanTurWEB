@@ -28,7 +28,7 @@ public class HotelDao extends AbstractDao<Hotel, Integer> implements grupo4.FanT
 		actual.setContacto(nuevo.getContacto());
 		actual.setNombre(nuevo.getNombre());
 		actual.setUbicacion(nuevo.getUbicacion());
-		em.persist(actual);
+		em.merge(actual);
 	}
 	
 }

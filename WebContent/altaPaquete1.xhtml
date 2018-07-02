@@ -24,8 +24,21 @@
 				<p:inputText value="#{paqueteCont.paquete.cantidad}"/>						
 		
 			</p:panelGrid>
-			<p:commandButton value="Registrar" action="#{paqueteCont.continuarHotel}" />		
-		</p:fieldset>
+			</p:fieldset>
+				<h:form>
+	<p:fieldset>
+	<p:panelGrid columns="1">
+		<p:outputLabel value="Servicio" />
+		<p:inputText value="#{paqueteCont.servicio}" />
+		<p:outputLabel value="Noches" />
+		<p:inputText value="#{paqueteCont.noches}" />
+		<p:outputLabel	value="Precio" />
+		<p:inputText value="#{paqueteCont.precio}" />
+	</p:panelGrid>
+	</p:fieldset>
+	</h:form>
+			<p:commandButton value="Registrar" action="#{paqueteCont.continuar}" />		
+		
 		
 	</h:form>
 

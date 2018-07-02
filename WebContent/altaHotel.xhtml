@@ -19,28 +19,28 @@
 			<p:panelGrid columns="1">
 			
 				<p:outputLabel value="Nombre Hotel" />
-				<p:inputText value="#{hotelCont.hotel.nombre}"/>
+				<p:inputText value="#{hotelCtrl.modelObj.nombre}"/>
 				<p:outputLabel value="Email" />
-				<p:inputText value="#{hotelCont.contacto.email}"/>
+				<p:inputText value="#{hotelCtrl.contacto.email}"/>
 				<p:outputLabel value="Pagina" />
-				<p:inputText value="#{hotelCont.contacto.pagina}" />
+				<p:inputText value="#{hotelCtrl.contacto.pagina}" />
 				<p:outputLabel value="Codigo Pais y Area" />
-				<p:inputText value="#{hotelCont.contacto.codPaisyArea}"/>
+				<p:inputText value="#{hotelCtrl.contacto.codPaisyArea}"/>
 				<p:outputLabel value="Telefono" />
-				<p:inputText value="#{hotelCont.contacto.telefono}"/>
+				<p:inputText value="#{hotelCtrl.contacto.telefono}"/>
 				<p:outputLabel value="Calle" />
-				<p:inputText value="#{hotelCont.ubicacion.calle}" />
+				<p:inputText value="#{hotelCtrl.ubicacion.calle}" />
 				<p:outputLabel value="Altura" />
-				<p:inputText value="#{hotelCont.ubicacion.altura}"/>
+				<p:inputText value="#{hotelCtrl.ubicacion.altura}"/>
 				<p:outputLabel value="Localidad" />
-				<p:inputText value="#{hotelCont.ubicacion.localidad}"/>
+				<p:inputText value="#{hotelCtrl.ubicacion.localidad}"/>
 				<p:outputLabel value="Provincia" />
-				<p:inputText value="#{hotelCont.ubicacion.provincia}" />
+				<p:inputText value="#{hotelCtrl.ubicacion.provincia}" />
 				<p:outputLabel value="Pais" />
-				<p:inputText value="#{hotelCont.ubicacion.pais}"/>
+				<p:inputText value="#{hotelCtrl.ubicacion.pais}"/>
 
 			</p:panelGrid>
-			<p:commandButton value="Registrar" action="#{hotelCont.crearHotel}" />		
+			<p:commandButton value="Registrar" action="#{hotelCtrl.create}" />		
 		</p:fieldset>
 		
 	</h:form>

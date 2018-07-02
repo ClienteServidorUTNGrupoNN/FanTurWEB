@@ -32,8 +32,8 @@ public class Hotel {
 	@JoinColumn(name = "UBICACION_FK")
 	private Ubicacion ubicacion;
 	
-	@ManyToOne
-	@JoinColumn(name = "idAlojamiento")
+	@ManyToOne(cascade=CascadeType.REMOVE)
+	@JoinColumn(name="idAlojamiento")	
 	private Alojamiento aloj;
 	
 	public Hotel() {
@@ -109,8 +109,10 @@ public class Hotel {
 
 	@Override
 	public String toString() {
-		return "Hotel [getId()=" + getId() + ", getNombre()=" + getNombre() + ", getContacto()=" + getContacto()
-				+ ", getAloj()=" + getAloj() + ", getUbicacion()=" + getUbicacion() + "]";
-	}
+		StringBuilder builder = new StringBuilder();
+		builder.append("nombre Hotel: ");
+		builder.append(getNombre());
+		return builder.toString();
+	}	
 	
 }

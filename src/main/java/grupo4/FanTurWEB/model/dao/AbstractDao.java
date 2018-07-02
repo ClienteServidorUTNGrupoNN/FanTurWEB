@@ -1,7 +1,10 @@
 package grupo4.FanTurWEB.model.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -14,7 +17,8 @@ import grupo4.FanTurWEB.model.dao.interfaces.Dao;
 
 @Stateless
 public abstract class AbstractDao<T, Id extends Serializable> implements Dao<T, Id>  {
-
+	
+	
 	@PersistenceContext(unitName = "pu1")
 	protected EntityManager em;
 
@@ -41,13 +45,16 @@ public abstract class AbstractDao<T, Id extends Serializable> implements Dao<T, 
 	}
 
 	@Override
-	public List<T> findAll() {
+	public Set<T> findAll() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<T> cq = cb.createQuery(this.getClazz());
 		Root<T> a = cq.from(this.getClazz());
 		cq.select(a);
 		TypedQuery<T> tq = em.createQuery(cq);
-		return tq.getResultList();
+		List<T> aux1 = new ArrayList<T>();
+		aux1 = tq.getResultList();
+		Set<T> aux2 = new HashSet<T>(aux1);		
+		return aux2;
 	}
 	
 	/* Pequeño yeite para que funcione el criteria query.

@@ -29,7 +29,7 @@ public class PaqueteDao extends AbstractDao<Paquete, Integer> implements grupo4.
 		actual.setEventos(nuevo.getEventos());
 		actual.setPasajes(nuevo.getPasajes());
 		actual.setPrecio(nuevo.getPrecio());
-		em.persist(actual);
+		em.merge(actual);
 	}
 		
 }
