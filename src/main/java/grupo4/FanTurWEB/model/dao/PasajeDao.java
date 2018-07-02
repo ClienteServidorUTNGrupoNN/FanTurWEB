@@ -1,14 +1,7 @@
 package grupo4.FanTurWEB.model.dao;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-
 import grupo4.FanTurWEB.model.Pasaje;
-
 
 @Stateless
 public class PasajeDao extends AbstractDao<Pasaje, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.PasajeDao {
@@ -32,7 +25,7 @@ public class PasajeDao extends AbstractDao<Pasaje, Integer> implements grupo4.Fa
 		actual.setPrecio(nuevo.getPrecio());
 		actual.setServicio(nuevo.getServicio());
 		actual.setVehiculo(nuevo.getVehiculo());
-		em.persist(actual);
+		this.update(actual);
 	}
 	
 }

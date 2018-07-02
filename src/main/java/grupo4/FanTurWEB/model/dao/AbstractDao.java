@@ -32,6 +32,10 @@ public abstract class AbstractDao<T, Id extends Serializable> implements Dao<T, 
 	public void update(Id id, T obj) {
 		
 	}
+	
+	public void update(T obj) {
+		em.merge(obj);
+	}
 
 	@Override
 	public void delete(T obj) {

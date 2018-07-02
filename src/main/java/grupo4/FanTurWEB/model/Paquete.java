@@ -1,22 +1,17 @@
 package grupo4.FanTurWEB.model;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-//import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -31,7 +26,7 @@ public class Paquete {
 	private int cantidad;
 	
 	@OneToMany(mappedBy="paquete",fetch  =FetchType.EAGER)
-	private List<Pasaje> pasajes;
+	private Set<Pasaje> pasajes;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ALOJAMIENTO_ID")
@@ -65,7 +60,7 @@ public class Paquete {
 		super();
 	}
 
-	public Paquete(int id, double precio, int cantidad, List<Pasaje> pasajes, Alojamiento alojamiento,
+	public Paquete(int id, double precio, int cantidad, Set<Pasaje> pasajes, Alojamiento alojamiento,
 			Set<Evento> eventos, Admin admin) {
 		super();
 		this.id = id;
@@ -101,12 +96,19 @@ public class Paquete {
 		this.cantidad = cantidad;
 	}
 
-	public List<Pasaje> getPasajes() {
+	public Set<Pasaje> getPasajes() {
 		return pasajes;
 	}
 
-	public void setPasajes(List<Pasaje> pasajes) {
+	public void setPasajes(Set<Pasaje> pasajes) {
 		this.pasajes = pasajes;
+	}
+	
+	public void addPasaje(Pasaje pasaje) {
+		if (this.pasajes == null) {
+			this.pasajes = new HashSet<Pasaje>();
+		}
+		this.pasajes.add(pasaje);
 	}
 
 	public Alojamiento getAlojamiento() {

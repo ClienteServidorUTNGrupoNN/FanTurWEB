@@ -3,14 +3,10 @@ package grupo4.FanTurWEB.model.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
-import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Cliente;
 import grupo4.FanTurWEB.model.Cliente_;
 
@@ -24,7 +20,7 @@ public class ClienteDao extends AbstractDao<Cliente, Integer> implements grupo4.
 		actual.setNombre(nuevo.getNombre());
 		actual.setContacto(nuevo.getContacto());
 		actual.setUser(nuevo.getUser());
-		em.persist(actual);
+		this.update(actual);
 	}
 
 	@Override

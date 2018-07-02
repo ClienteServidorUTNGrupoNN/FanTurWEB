@@ -1,18 +1,15 @@
 package grupo4.FanTurWEB.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
 @Entity
 public class Ubicacion {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue
 	private int id;
 	
 	private String calle;
@@ -102,7 +99,5 @@ public class Ubicacion {
 				+ ", getLocalidad()=" + getLocalidad() + ", getProvincia()=" + getProvincia() + ", getPais()="
 				+ getPais() + "]";
 	}
-	
-	
 	
 }

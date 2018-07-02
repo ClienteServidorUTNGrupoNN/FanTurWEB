@@ -3,8 +3,6 @@ package grupo4.FanTurWEB.model.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -24,7 +22,7 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 		Admin actual = this.findById(id);
 		actual.setApellido(nuevo.getApellido());
 		actual.setNombre(nuevo.getNombre());
-		em.persist(actual);
+		this.update(actual);
 	}
 	
 	@Override

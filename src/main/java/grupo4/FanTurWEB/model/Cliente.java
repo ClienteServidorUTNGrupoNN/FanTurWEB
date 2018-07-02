@@ -1,8 +1,8 @@
 package grupo4.FanTurWEB.model;
 
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Past;
 
@@ -24,7 +23,7 @@ public class Cliente extends User {
 	private Date nacimiento;
 
 	@OneToMany(mappedBy="cliente", fetch=FetchType.EAGER)
-	private List<Reserva> reservas;
+	private Set<Reserva> reservas;
 	
 	@Transient
 	private Reserva reserva;
@@ -51,7 +50,7 @@ public class Cliente extends User {
 		this.nacimiento = nacimiento;
 	}
 
-	public List<Reserva> getReservas() {
+	public Set<Reserva> getReservas() {
 		return reservas;
 	}
 	
@@ -64,11 +63,10 @@ public class Cliente extends User {
 	}
 
 	public void reservar(Paquete paquete) {
-//		reserva = FactoryReserva.createReserva(paquete);
 		reserva = Reserva.createReserva(paquete, this);
 		if (reserva != null) {
 			if (this.reservas == null) {
-				this.reservas = new LinkedList<Reserva>();
+				this.reservas = new HashSet<Reserva>();
 			}
 			this.reservas.add(reserva);
 		}
@@ -80,6 +78,4 @@ public class Cliente extends User {
 				+ super.toString() + "]";
 	}
 	
-	
-
 }

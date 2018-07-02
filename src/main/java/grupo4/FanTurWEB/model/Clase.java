@@ -1,20 +1,17 @@
 package grupo4.FanTurWEB.model;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-//import javax.persistence.Table;
-//import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-//import grupo4.FanTurWEB.model.Pasaje.TipoVehiculo;
 
 @Entity
 public class Clase {
@@ -28,7 +25,7 @@ public class Clase {
 	private TipoClase clase;
 	
 	@OneToMany
-	private List<Servicio> servicios;
+	private Set<Servicio> servicios;
 
 	public Clase() {
 		super();
@@ -50,13 +47,13 @@ public class Clase {
 		this.clase = clase;
 	}
 	
-	public List<Servicio> getServicios(){
+	public Set<Servicio> getServicios(){
 		return servicios;
 	}
 	
 	public void addServicio(Servicio servicio) {
 		if (this.servicios == null) {
-			this.servicios = new LinkedList<Servicio>();
+			this.servicios = new HashSet<Servicio>();
 		}
 		this.servicios.add(servicio);
 	}

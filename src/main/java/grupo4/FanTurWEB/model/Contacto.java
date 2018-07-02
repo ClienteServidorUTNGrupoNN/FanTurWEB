@@ -2,9 +2,8 @@ package grupo4.FanTurWEB.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -17,17 +16,12 @@ public class Contacto {
 	
 	private String email;
 	
-	private String pagina;
+	private String website;
 	
 	@NotNull
 	@Min(000000)
-	@Max(999999)
-	private int codPaisyArea;
-	
-	@NotNull
-	@Min(000000)
-	@Max(999999)
-	private int telefono;
+	@Digits(integer=10, fraction=0)
+	private long telefono;
 
 	public String getEmail() {
 		return email;
@@ -37,28 +31,20 @@ public class Contacto {
 		this.email = email;
 	}
 
-	public int getCodPaisyArea() {
-		return codPaisyArea;
-	}
-
-	public void setCodPaisyArea(int codPaisyArea) {
-		this.codPaisyArea = codPaisyArea;
-	}
-
-	public int getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 	
-	public String getPagina() {
-		return pagina;
+	public String getWebsite() {
+		return website;
 	}
 
-	public void setPagina(String pagina) {
-		this.pagina = pagina;
+	public void setWebsite(String website) {
+		this.website = website;
 	}
 	
 	public int getId() {
@@ -69,11 +55,10 @@ public class Contacto {
 		super();
 	}
 	
-	public Contacto(String email, int codPaisyArea, int telefono, String pagina) {
+	public Contacto(String email, int telefono, String website) {
 		this.setEmail(email);
-		this.setCodPaisyArea(codPaisyArea);
 		this.setTelefono(telefono);
-		this.setPagina(pagina);
+		this.setWebsite(website);
 	}
 	
 	@Override
@@ -106,7 +91,7 @@ public class Contacto {
 		builder.append("E-mail: ");
 		builder.append(getEmail());
 		builder.append(" Página: ");
-		builder.append(getPagina());
+		builder.append(getWebsite());
 		return builder.toString();
 	}
 	

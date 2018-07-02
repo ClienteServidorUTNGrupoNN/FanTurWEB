@@ -1,11 +1,7 @@
 package grupo4.FanTurWEB.model.dao;
 
-//import java.util.List;
-
 import javax.ejb.Stateless;
-
 import grupo4.FanTurWEB.model.Alojamiento;
-
 
 @Stateless
 public class AlojamientoDao extends AbstractDao<Alojamiento, Integer> implements grupo4.FanTurWEB.model.dao.interfaces.AlojamientoDao {
@@ -21,6 +17,6 @@ public class AlojamientoDao extends AbstractDao<Alojamiento, Integer> implements
 		actual.setNoches(nuevo.getNoches());
 		actual.setPrecio(nuevo.getPrecio());
 		actual.setServicio(nuevo.getServicio());
-		em.persist(actual);
+		this.update(actual);
 	}
 }
