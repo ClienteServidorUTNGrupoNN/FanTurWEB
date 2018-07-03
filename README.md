@@ -22,3 +22,15 @@
 ```
 6. Agregar el proyecto al servidor Wildfly.
 7. Ejecutar el servidor.
+
+8. Pegar las siguientes líneas en la sección security-domains del standalone:
+
+                <security-domain name="school" cache-type="default">
+                    <authentication>
+                        <login-module code="Database" flag="required">
+                            <module-option name="dsJndiName" value="java:/jboss/datasources/FanTurDS"/>
+                            <module-option name="rolesQuery" value="SELECT rol AS 'Role', 'Roles' FROM fantur_db.user u WHERE u.user = ?"/>
+                            <module-option name="principalsQuery" value="SELECT password AS 'Password' FROM fantur_db.user u WHERE u.user = ?"/>
+                        </login-module>
+                    </authentication>
+                </security-domain>
