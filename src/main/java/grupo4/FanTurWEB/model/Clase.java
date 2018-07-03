@@ -51,6 +51,11 @@ public class Clase {
 		return servicios;
 	}
 	
+	
+	public void setServicios(Set<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+
 	public void addServicio(Servicio servicio) {
 		if (this.servicios == null) {
 			this.servicios = new HashSet<Servicio>();

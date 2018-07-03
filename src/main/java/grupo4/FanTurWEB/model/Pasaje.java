@@ -62,6 +62,15 @@ public class Pasaje {
 		this.paquete = paquete;
 	}
 	
+	
+	public Clase getClase() {
+		return clase;
+	}
+
+	public void setClase(Clase clase) {
+		this.clase = clase;
+	}
+
 	public int getId() {
 		return id;
 	}

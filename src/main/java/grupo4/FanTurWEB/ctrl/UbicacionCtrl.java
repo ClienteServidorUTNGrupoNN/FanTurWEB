@@ -22,5 +22,9 @@ public class UbicacionCtrl extends Ctrl<Ubicacion> implements Serializable{
 		afterUpdate = "pagina adonde ir despues de actualizar";
 		afterDelete = "pagina adonde ir despues de borrar";
 	}
+	
+	public void modificar() {
+		this.update();
+	}
 		
 }
