@@ -21,7 +21,7 @@ public class Contacto {
 	@NotNull
 	@Min(000000)
 	@Digits(integer=10, fraction=0)
-	private long telefono;
+	private Integer telefono;
 
 	public String getEmail() {
 		return email;
@@ -30,14 +30,16 @@ public class Contacto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public long getTelefono() {
+	
+	
+	public Integer getTelefono() {
 		return telefono;
 	}
-
-	public void setTelefono(long telefono) {
+	
+	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
 	}
+	
 	
 	public String getWebsite() {
 		return website;

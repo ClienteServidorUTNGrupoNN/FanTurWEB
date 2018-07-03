@@ -40,6 +40,17 @@ public class ClienteDao extends AbstractDao<Cliente, Integer> implements grupo4.
 	protected Class<Cliente> getClazz() {
 		return Cliente.class;
 	}
-
-
+	
+	
+	public List<Cliente> findByUser(String user) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
+		Root<Cliente> c = cq.from(Cliente.class);
+		cq.select(c).where(
+				cb.like(c.get(Cliente_.user), user
+				));
+		TypedQuery<Cliente> tq = em.createQuery(cq);
+		return tq.getResultList();
+	}
+	
 }

@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -29,7 +31,8 @@ public class ClienteCont implements Serializable {
 	private Cliente cliente;
 	
 	private Contacto contacto;
-
+	
+	private int id_cli;
 	
 	
 	
@@ -52,7 +55,15 @@ public class ClienteCont implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+		
 	
+	public int getId_cli() {
+		return id_cli;
+	}
+	
+	public void setId_cli(int id_cli) {
+		this.id_cli = id_cli;
+	}
 	
 	
 	
@@ -69,13 +80,7 @@ public class ClienteCont implements Serializable {
 			
 			logger.info("Se va a crear un cliente: " + cliente);
 			
-			
-			/*
-			this.contacto.setEmail("");
-			this.contacto.setPagina("");
-			this.contacto.setCodPaisyArea(000000);
-			this.contacto.setTelefono(000000);
-			*/
+			logger.info("Se va a setear el siguiente contacto al cliente: " + contacto);
 			
 			logger.info("Se va a setear el siguiente contacto al cliente: " + contacto);
 
@@ -84,10 +89,26 @@ public class ClienteCont implements Serializable {
 			
 			logger.info("Se seteó el siguiente contacto al cliente: " + cliente.getContacto());
 			
+			//AGREGADO
+			this.cliente.setRol("USER");
+			
 			clienteEJB.create(cliente);
-			//mensaje
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Registro Exitoso!"));
+			
 		}catch(Exception e) {
-			//mensaje
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Registro Fallido"));
+		}
+	}
+	
+	
+	public void eliminar() {
+		try {
+			cliente = clienteEJB.findById(id_cli);
+			clienteEJB.delete(cliente);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Borrado Exitoso"));
+		}catch(Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Borrado Fallido"));
 		}
 	}
 

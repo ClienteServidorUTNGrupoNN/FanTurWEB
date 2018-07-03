@@ -55,7 +55,12 @@ public class EventoCont implements Serializable{
 		
 	}
 	
+	
+	//FIJATE DESPUES NEGRO PORQUE ME DA ERROR.. PIDE CASTEO
+	/*
 	public List<Evento> encontrarTodos() {
 		return eventoEJB.findAll();
 	}
+	*/
+	
 }

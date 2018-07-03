@@ -18,7 +18,7 @@ import javax.validation.constraints.Past;
 @Entity
 public class Cliente extends User {
 	
-	@Past
+	//@Past
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
 
@@ -36,8 +36,8 @@ public class Cliente extends User {
 		super();
 	}
 	
-	public Cliente(String nombre, String apellido, String user,String password, Date nacimiento, Contacto contacto) {
-		super(nombre, apellido, user, password);
+	public Cliente(String nombre, String apellido, String user,String password, Date nacimiento, Contacto contacto, String rol) {
+		super(nombre, apellido, user, password, rol);
 		this.nacimiento = nacimiento;
 		this.contacto = contacto;
 	}

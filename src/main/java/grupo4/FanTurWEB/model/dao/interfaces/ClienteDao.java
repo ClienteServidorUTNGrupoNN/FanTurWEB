@@ -11,4 +11,6 @@ public interface ClienteDao extends grupo4.FanTurWEB.model.dao.interfaces.Dao<Cl
 	
 	List<Cliente> findByNombreApellido(String nombre, String apellido);
 	
+	List<Cliente> findByUser(String user);
+	
 }

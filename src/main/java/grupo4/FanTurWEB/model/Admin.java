@@ -24,8 +24,8 @@ public class Admin extends User {
 		super();
 	}
 
-	public Admin(String nombre, String apellido, String user,String password, Admin registradoPor) {
-		super(nombre, apellido, user, password);
+	public Admin(String nombre, String apellido, String user,String password, Admin registradoPor, String rol) {
+		super(nombre, apellido, user, password, rol);
 		this.registradoPor = registradoPor;
 	}
 	

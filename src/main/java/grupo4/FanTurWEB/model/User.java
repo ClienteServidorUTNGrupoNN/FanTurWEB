@@ -23,21 +23,31 @@ public abstract class User {
 	@NotNull @Size(min = 8)
 	private String password;
 	
+	@NotNull
+	private String rol;
+	
+	
+	
 	public User() {
 		super();
 	}
 	
-	public User(String nombre, String apellido, String user, String password) {
+	
+	public User(String nombre, String apellido, String user, String password, String rol) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.user = user;
 		this.password = password;
+		this.rol = rol;
 	}
+	
+	
 	
 	public int getId() {
 		return this.id;
 	}
+	
 	
 	public String getNombre() {
 		return nombre;
@@ -47,6 +57,7 @@ public abstract class User {
 		this.nombre = nombre;
 	}
 	
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -54,6 +65,7 @@ public abstract class User {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
 	
 	public String getUser() {
 		return this.user;
@@ -63,13 +75,25 @@ public abstract class User {
 		this.user = user;
 	}
 	
+		
+	public String getRol() {
+		return rol;
+	}
+	
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
