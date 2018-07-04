@@ -32,6 +32,10 @@ public class Admin extends User {
 	public Admin getRegistradoPor() {
 		return registradoPor;
 	}
+	
+	public void setRegistradoPor(Admin registradoPor) {
+		this.registradoPor = registradoPor;
+	}
 
 	public Set<Admin> getListaAdmin() {
 		return listaAdmin;

@@ -12,6 +12,8 @@ import javax.persistence.criteria.Root;
 import grupo4.FanTurWEB.model.Admin;
 
 import grupo4.FanTurWEB.model.Admin_;
+//import grupo4.FanTurWEB.model.Cliente;
+//import grupo4.FanTurWEB.model.Cliente_;
 
 @Stateless
 public class AdminDao extends AbstractDao<Admin, Integer>
@@ -52,6 +54,17 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 	@Override
 	protected Class<Admin> getClazz() {
 		return Admin.class;
+	}
+	
+	public List<Admin> findByUser(String user) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Admin> cq = cb.createQuery(Admin.class);
+		Root<Admin> c = cq.from(Admin.class);
+		cq.select(c).where(
+				cb.like(c.get(Admin_.user), user
+				));
+		TypedQuery<Admin> tq = em.createQuery(cq);
+		return tq.getResultList();
 	}
 
 }

@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
 
+import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Cliente;
 import grupo4.FanTurWEB.model.Contacto;
+import grupo4.FanTurWEB.model.dao.interfaces.AdminDao;
 import grupo4.FanTurWEB.model.dao.interfaces.ClienteDao;
 import grupo4.FanTurWEB.model.dao.interfaces.ContactoDao;
 
@@ -35,6 +37,9 @@ public class LoginCont implements Serializable {
 	
 	@EJB
 	private ContactoDao contactoEJB;
+	
+	@EJB
+	private AdminDao adminEJB;
 	
 
 	private Cliente cliente;
@@ -154,6 +159,17 @@ public class LoginCont implements Serializable {
 		} catch (ServletException e) {
 			logger.error("Logout error: " + e.getMessage());
 		}
+	}
+	
+	
+	
+	public Admin obtenerAdminSesion() {
+		logger.info("Se llama a obtenerAdminSesion()");
+		List<Admin> listaAdminTemp = adminEJB.findByUser(this.usuario);
+		logger.info("la seteo la lista");
+		logger.info("la lista esta vacia" + listaAdminTemp.isEmpty());
+		return listaAdminTemp.get(0);
+		
 	}
 	
 	

@@ -1,14 +1,15 @@
 package grupo4.FanTurWEB.ctrl;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-
-
+import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -22,6 +23,9 @@ import javax.ws.rs.core.MediaType;
 
 import javax.ws.rs.core.Response;
 
+import org.jboss.logging.Logger;
+
+import grupo4.FanTurWEB.controladores.LoginCont;
 import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Ubicacion;
 import grupo4.FanTurWEB.model.dao.interfaces.AdminDao;
@@ -31,6 +35,11 @@ import grupo4.FanTurWEB.model.dao.interfaces.AdminDao;
 public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger logger = Logger.getLogger(AdminCtrl.class);
+	
+	@EJB
+	private AdminDao adminEJB;
 	
 	@PostConstruct
 	private void init() {
@@ -44,6 +53,7 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 		administradores2 = new HashSet<Admin>();
 		administradores = new HashSet<Admin>();
 		administradores = this.getAll();
+		modelObj.setRol("ADMINISTRATOR");
 	}	
 	
 	//Esto hago para poder gestionar los admin con la vista que cree aca
@@ -97,5 +107,35 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 		this.administradores = administradores;
 	}
 	
-
+	
+//	public String crear() {
+//		Admin adminEnSesion = loginBean.obtenerAdminSesion();
+//		modelObj.setRegistradoPor(adminEnSesion);
+//		String redireccion = this.create();
+//		return redireccion;
+//		
+//	}
+	
+	
+	@Override
+	public String create() {
+		logger.info("Se llama a create()");
+		
+		List<Admin> listaAdminEnSesion = adminEJB.findByUser(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+		
+		Admin adminEnSesion = listaAdminEnSesion.get(0);
+		
+		modelObj.setRegistradoPor(adminEnSesion);
+		
+		invocation = webTarget.request().buildPost(Entity.entity(modelObj, MediaType.APPLICATION_JSON));
+		response = invocation.invoke();
+		
+		logger.info("lo que devuelve getUserPrincipal() " + FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+		
+		logger.info("Administrador seteado a registradoPor: " + adminEnSesion);
+		
+		return afterCreate;
+	}
+	
+	
 }

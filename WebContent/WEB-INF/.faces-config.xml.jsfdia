@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#altaAdmin.xhtml" PATH="/altaAdmin.xhtml"
-  SHAPE="256,33,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#altaAdmin.xhtml:0" NAME="item"
-   PATH="/altaAdmin.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="succes::#exito.xhtml" NAME="output"
-    PATH="/exito.xhtml" TARGET="rules:#exito.xhtml" TITLE="succes" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#eliminarAdmin.xhtml"
-  PATH="/eliminarAdmin.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#eliminarAdmin.xhtml:0" NAME="item"
-   PATH="/eliminarAdmin.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="succes::#exito.xhtml" NAME="output"
-    PATH="/exito.xhtml" TARGET="rules:#exito.xhtml" TITLE="succes" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#exito.xhtml" PATH="/exito.xhtml"
-  SHAPE="480,17,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#indexAdmin.xhtml" PATH="/indexAdmin.xhtml"
-  SHAPE="240,257,0,0" model-entity="JSFProcessGroup">
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#indexAdmin.xhtml:0" NAME="item"
    PATH="/indexAdmin.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="crearAdmin::#altaAdmin.xhtml" NAME="output"
@@ -39,8 +21,24 @@
     TARGET="rules:#altaPaquete1.xhtml" TITLE="crearPaquete" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#altaAdmin.xhtml" PATH="/altaAdmin.xhtml"
+  SHAPE="720,273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#altaAdmin.xhtml:0" NAME="item"
+   PATH="/altaAdmin.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="succes::#exito.xhtml" NAME="output"
+    PATH="/exito.xhtml" TARGET="rules:#exito.xhtml" TITLE="succes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#eliminarAdmin.xhtml"
+  PATH="/eliminarAdmin.xhtml" SHAPE="720,385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#eliminarAdmin.xhtml:0" NAME="item"
+   PATH="/eliminarAdmin.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="succes::#exito.xhtml" NAME="output"
+    PATH="/exito.xhtml" TARGET="rules:#exito.xhtml" TITLE="succes" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#altaHotel.xhtml" PATH="/altaHotel.xhtml"
-  SHAPE="512,129,0,0" model-entity="JSFProcessGroup">
+  SHAPE="720,497,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#altaHotel.xhtml:0" NAME="item"
    PATH="/altaHotel.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="succes::#exito.xhtml" NAME="output"
@@ -48,7 +46,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#altaEvento.xhtml" PATH="/altaEvento.xhtml"
-  SHAPE="512,241,0,0" model-entity="JSFProcessGroup">
+  SHAPE="720,609,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#altaEvento.xhtml:0" NAME="item"
    PATH="/altaEvento.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="succes::#exito.xhtml" NAME="output"
@@ -56,7 +54,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#altaPaquete1.xhtml"
-  PATH="/altaPaquete1.xhtml" SHAPE="32,481,0,0" model-entity="JSFProcessGroup">
+  PATH="/altaPaquete1.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#altaPaquete1.xhtml:0" NAME="item"
    PATH="/altaPaquete1.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="seguir::#AltaPaquete2.xhtml" NAME="output"
@@ -65,7 +63,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#AltaPaquete2.xhtml"
-  PATH="/AltaPaquete2.xhtml" SHAPE="240,497,0,0" model-entity="JSFProcessGroup">
+  PATH="/AltaPaquete2.xhtml" SHAPE="512,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#AltaPaquete2.xhtml:0" NAME="item"
    PATH="/AltaPaquete2.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="continuar::#AltaPaquete3.xhtml"
@@ -74,11 +72,13 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#AltaPaquete3.xhtml"
-  PATH="/AltaPaquete3.xhtml" SHAPE="512,481,0,0" model-entity="JSFProcessGroup">
+  PATH="/AltaPaquete3.xhtml" SHAPE="720,33,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#AltaPaquete3.xhtml:0" NAME="item"
    PATH="/AltaPaquete3.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="terminar::#exito.xhtml" NAME="output"
     PATH="/exito.xhtml" TARGET="rules:#exito.xhtml" TITLE="terminar" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#exito.xhtml" PATH="/exito.xhtml"
+  SHAPE="992,17,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
