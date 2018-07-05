@@ -11,13 +11,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Admin extends User {
 	
 	@ManyToOne
+	@JsonIgnoreProperties("listaAdmin")
 	private Admin registradoPor;
 	
 	@OneToMany(mappedBy="registradoPor", fetch=FetchType.EAGER)
+	@JsonIgnoreProperties("registradoPor")
 	private Set<Admin> listaAdmin;
 	
 	public Admin() {

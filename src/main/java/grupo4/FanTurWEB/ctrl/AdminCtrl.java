@@ -28,6 +28,7 @@ import org.jboss.logging.Logger;
 import grupo4.FanTurWEB.controladores.LoginCont;
 import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Ubicacion;
+import grupo4.FanTurWEB.model.User;
 import grupo4.FanTurWEB.model.dao.interfaces.AdminDao;
 
 @Named()
@@ -117,22 +118,35 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 //	}
 	
 	
-	@Override
-	public String create() {
-		logger.info("Se llama a create()");
+	
+	
+	
+	
+	//DESPUES DE HORAS DE PROBAR, LO QUE DA ERROR ES QUE CUANDO UN ADMIN REGISTRO A OTRO ADMIN, NO PUEDE VOLVER A HACERLO PORQUE 
+	//PARECE QUE EL JSON QUE GENERA ES INFINITO Y DEVUELVE STACK OVERFLOW.. 
+	public String crear() {
+		logger.info("Se llama a crear()");
 		
-		List<Admin> listaAdminEnSesion = adminEJB.findByUser(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+		//ESTO DA ERROR DE STACK OVERFLOW
+		
+		String nombre = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+		
+		
+		List<Admin> listaAdminEnSesion = adminEJB.findByUser(nombre);
 		
 		Admin adminEnSesion = listaAdminEnSesion.get(0);
 		
+		 
+		//ESTO SI ES LO QUE DA BUCLE INFINITO.. POSTA..
 		modelObj.setRegistradoPor(adminEnSesion);
 		
 		invocation = webTarget.request().buildPost(Entity.entity(modelObj, MediaType.APPLICATION_JSON));
 		response = invocation.invoke();
 		
-		logger.info("lo que devuelve getUserPrincipal() " + FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+		logger.info("lo que devuelve getUserPrincipal().getName(): " + nombre);
 		
-		logger.info("Administrador seteado a registradoPor: " + adminEnSesion);
+		//ESTO PARECE QUE ES LO QUE DA EL BUCLE INFINITO.. LPM
+		//logger.info("Administrador seteado a registradoPor: " + adminEnSesion);
 		
 		return afterCreate;
 	}

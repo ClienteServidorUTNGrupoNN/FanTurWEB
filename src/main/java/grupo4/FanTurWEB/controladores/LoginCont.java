@@ -2,6 +2,8 @@ package grupo4.FanTurWEB.controladores;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -26,27 +28,27 @@ import grupo4.FanTurWEB.model.dao.interfaces.ContactoDao;
 @Named("loginBean")
 @SessionScoped
 public class LoginCont implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private static Logger logger = Logger.getLogger(LoginCont.class);
 
 	@EJB
 	private ClienteDao clienteEJB;
-	
-	
+
 	@EJB
 	private ContactoDao contactoEJB;
-	
+
 	@EJB
 	private AdminDao adminEJB;
-	
 
 	private Cliente cliente;
 
 	private Contacto contacto;
 
 	private Cliente clienteResguardo;
+
+	private Admin adminResguardo;
 
 	private String usuario;
 
@@ -91,9 +93,15 @@ public class LoginCont implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
+
+	public Admin getAdminResguardo() {
+		return adminResguardo;
+	}
+
+	public void setAdminResguardo(Admin adminResguardo) {
+		this.adminResguardo = adminResguardo;
+	}
+
 	@PostConstruct
 	public void init() {
 		cliente = new Cliente();
@@ -102,46 +110,46 @@ public class LoginCont implements Serializable {
 	}
 	
 	
-	
-	public String iniciarSesion() {
-		logger.info("Se llama a iniciarSesion()");
-		// Cliente tempCli;
+	public String login() {
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		
+		//AGREGADO
 		String redireccion = null;
-		// cliente.setContacto(contacto);
-
+		
+		
 		try {
-
-			List<Cliente> listaClienteTemp = clienteEJB.findByUser(this.usuario);
 			
-			//SI LA LISTA ESTA VACIA, SALE POR EL CATCH
 			
-			if (listaClienteTemp != null) {
-				clienteResguardo = listaClienteTemp.get(0);
-				
-				logger.info("Se guardó el resguardo del cliente" + clienteResguardo);
-
-				if (clienteResguardo.getPassword().equals(this.password)) {
-					// Almacenar en la sesión de JSF
-					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clientex",
-							clienteResguardo);
-					redireccion = "loginproxy";
-					
-				} else {
-
-					FacesContext.getCurrentInstance().addMessage(null,
-							new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Contraseña Incorrecta"));
-				}
-
+			//AGREGADO
+			
+			//SI HAY UNA SESION ABIERTA Y DE ALGUNA MANERA SE PUDO ACCEDER A LA PANTALLA DE LOGIN, PRIMERO CIERRO LA SESION
+			if (FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal() != null) {
+				cerrarSesion();
 			}
-
+			
+			if(clienteEJB.findByUser(usuario).isEmpty() != true) {
+				request.login(usuario, password);
+				clienteResguardo = clienteEJB.findByUser(usuario).get(0);
+				redireccion = "user/cards.xhtml";
+				return redireccion;
+			}else {
+				if(adminEJB.findByUser(usuario).isEmpty() != true) {
+					request.login(usuario, password);
+					adminResguardo = adminEJB.findByUser(usuario).get(0);
+					redireccion = "admin/registrationAdmin.xhtml";
+					return redireccion;
+				}else {
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Usuario no Regitrado"));
+				}
+			}
+			
 		} catch (Exception e) {
-
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "Usuario no regitrado"));
-
+			FacesContext.getCurrentInstance().addMessage("",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contraseña Incorrecta", ""));
 		}
 		return redireccion;
 	}
+	
 	
 	
 	public void cerrarSesion() {
@@ -149,9 +157,7 @@ public class LoginCont implements Serializable {
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		try {
 			if (request != null) {
-				//request.getSession(false).invalidate();
 				request.logout();
-				//this.authenticationError = false;
 			}
 			externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
 		} catch (IOException e) {
@@ -160,17 +166,5 @@ public class LoginCont implements Serializable {
 			logger.error("Logout error: " + e.getMessage());
 		}
 	}
-	
-	
-	
-	public Admin obtenerAdminSesion() {
-		logger.info("Se llama a obtenerAdminSesion()");
-		List<Admin> listaAdminTemp = adminEJB.findByUser(this.usuario);
-		logger.info("la seteo la lista");
-		logger.info("la lista esta vacia" + listaAdminTemp.isEmpty());
-		return listaAdminTemp.get(0);
-		
-	}
-	
-	
+
 }
