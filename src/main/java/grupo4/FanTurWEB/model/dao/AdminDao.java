@@ -1,6 +1,9 @@
 package grupo4.FanTurWEB.model.dao;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -65,6 +68,20 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 				));
 		TypedQuery<Admin> tq = em.createQuery(cq);
 		return tq.getResultList();
+	}
+	
+	
+	
+	
+	public List<Admin> findAllLista() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Admin> cq = cb.createQuery(Admin.class);
+		Root<Admin> a = cq.from(Admin.class);
+		cq.select(a);
+		TypedQuery<Admin> tq = em.createQuery(cq);
+		List<Admin> aux1 = new ArrayList<Admin>();
+		aux1 = tq.getResultList();
+		return aux1;
 	}
 
 }
