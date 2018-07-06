@@ -69,8 +69,9 @@ public abstract class Ctrl<Model> {
 		response = invocation.invoke();
 	}
 	
-	public void update(Model object) {
-		invocation = webTarget.path(String.valueOf(this.getId(object))).request().buildPut(Entity.json(modelObj));
+	public void update(int objId,Model object) {
+		id=objId;
+		invocation = webTarget.path(String.valueOf(id)).request().buildPut(Entity.json(modelObj));
 		response = invocation.invoke();
 	}
 	

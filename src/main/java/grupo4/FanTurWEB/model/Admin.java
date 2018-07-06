@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -24,7 +25,7 @@ public class Admin extends User {
 	private Admin registradoPor;
 	
 	@OneToMany(mappedBy="registradoPor", fetch=FetchType.EAGER)
-	@JsonIgnoreProperties("registradoPor")
+	//@JsonIgnoreProperties("registradoPor")
 	private Set<Admin> listaAdmin;
 	
 	public Admin() {
@@ -46,24 +47,30 @@ public class Admin extends User {
 
 	public Set<Admin> getListaAdmin() {
 		return listaAdmin;
+		
 	}
 	
-	public void registrarAdmin(Admin newAdmin ) {
+	public Admin registrarAdmin(Admin newAdmin ) {
 		if (this.listaAdmin == null) {
 			this.listaAdmin = new HashSet<Admin>();
 		}
-		newAdmin.registradoPor = this;
+		newAdmin.setRegistradoPor(this);
 		this.listaAdmin.add(newAdmin);	
+		return newAdmin;
 	}
 	
+	public void setListaAdmin(Set<Admin> listaAdmin) {
+		this.listaAdmin = listaAdmin;
+	}
+
 	public void crearPaquete() {
 		
 	}
 
-	@Override
-	public String toString() {
-		return "[ Nombre: " + getNombre() + ", Apellido: " + getApellido()
-				+ ", Usuario: " + getUser() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "[ Nombre: " + getNombre() + ", Apellido: " + getApellido()
+//				+ ", Usuario: " + getUser() + "]";
+//	}
 	
 }

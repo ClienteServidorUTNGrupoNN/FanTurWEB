@@ -59,7 +59,8 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 		return Admin.class;
 	}
 	
-	public List<Admin> findByUser(String user) {
+	public Admin findByUser(String user) {
+		
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Admin> cq = cb.createQuery(Admin.class);
 		Root<Admin> c = cq.from(Admin.class);
@@ -67,7 +68,9 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 				cb.like(c.get(Admin_.user), user
 				));
 		TypedQuery<Admin> tq = em.createQuery(cq);
-		return tq.getResultList();
+		Admin admin = tq.getSingleResult();
+		return admin;
+		
 	}
 	
 	

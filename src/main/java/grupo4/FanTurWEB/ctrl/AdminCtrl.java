@@ -31,7 +31,7 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	
 	private String nombre;
 	
-	private List<Admin> administradores;
+	private Set<Admin> administradores;
 
 //	@EJB
 //	private AdminDao adminEJB;
@@ -54,7 +54,9 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 		client = ClientBuilder.newClient();
 		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/admin");
 		modelList = this.getAll();
-		administradores = new ArrayList<Admin>();
+		administradores = new HashSet<Admin>();
+		modelObj.setListaAdmin(administradores);
+		modelObj.setRol("ADMINISTRATOR");
 	}
 
 	@Override
@@ -105,19 +107,30 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	public Admin getByUser(String user) {
 		invocation = webTarget.path(user).request().buildGet();
 		response = invocation.invoke();
-		administradores = response.readEntity(new GenericType<List<Admin>>() {});
-		Admin admin = administradores.get(0);
+		Admin admin = response.readEntity(Admin.class);		
 		return admin;
 			
+	}
+	
+	public String crear2() {
+		
+	this.create();
+	return "/admin/indexAdmin.xhtml";
+		
 	}
 	
 	// Tuto's stuff
 	public String crear() {
 		nombre = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+		logger.info("Se seteó el admin en sesión.." + nombre);
 		Admin adminEnSesion = this.getByUser(nombre);
-		modelObj.setRegistradoPor(adminEnSesion);				
-		modelObj.setRol("ADMINISTRATOR");
-		create();
+		this.update(adminEnSesion.getId(), adminEnSesion);
+		modelObj.setRegistradoPor(adminEnSesion);
+		create();	
+		adminEnSesion.getListaAdmin().add(modelObj);
+		this.update(adminEnSesion.getId(), adminEnSesion);
+		
+									
 		return "/admin/indexAdmin.xhtml";
 	}
 

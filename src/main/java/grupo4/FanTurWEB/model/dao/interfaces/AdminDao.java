@@ -12,7 +12,7 @@ public interface AdminDao extends Dao<Admin, Integer> {
 	List<Admin> findByNombreApellido(String nombre, String apellido);
 	List<Admin> findByRegistradoPor(Admin admin);
 	
-	List<Admin> findByUser(String user);
+	Admin findByUser(String user);
 	
 	List<Admin> findAllLista();
 	
