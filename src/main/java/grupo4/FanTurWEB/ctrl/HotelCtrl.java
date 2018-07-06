@@ -26,12 +26,6 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 	private int idHotel;
 	private Ubicacion ubicacion;
 	private Contacto contacto;
-	private Set<Hotel> hoteles1;
-	private Set<Hotel> hoteles2;
-	//private List<Hotel> laux1;	
-	//private List<Hotel> laux2;
-	//private UbicacionCtrl ubicacionCont;
-	//private ContactoCtrl contactoCont;
 	
 	@PostConstruct
 	private void init() {
@@ -43,10 +37,6 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 		contacto = new Contacto();
 		modelObj.setContacto(contacto);
 		modelObj.setUbicacion(ubicacion);
-		hoteles1 = new HashSet<Hotel>();
-		hoteles1 = this.getAll();
-		//laux1 = new ArrayList<Hotel>(hoteles1);
-		hoteles2 = new HashSet<Hotel>();
 	}
 
 	public int getIdHotel() {
@@ -55,22 +45,6 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 
 	public void setIdHotel(int idHotel) {
 		this.idHotel = idHotel;
-	}
-
-	public Set<Hotel> getHoteles1() {
-		return hoteles1;
-	}
-
-	public void setHoteles1(Set<Hotel> hoteles1) {
-		this.hoteles1 = hoteles1;
-	}
-
-	public Set<Hotel> getHoteles2() {
-		return hoteles2;
-	}
-
-	public void setHoteles2(Set<Hotel> hoteles2) {
-		this.hoteles2 = hoteles2;
 	}
 
 	public static long getSerialversionuid() {
@@ -96,6 +70,15 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 	public void empezarGestion(Hotel hotelucho) {
 		modelObj = hotelucho; 
 	}
-	
 
+	@Override
+	public String getId(Hotel hotel) {
+		return String.valueOf(hotel.getId());
+	}
+
+	@Override
+	protected Class<Hotel> getClase() {
+		return Hotel.class;
+	}
+	
 }

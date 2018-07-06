@@ -58,10 +58,10 @@ public abstract class Ctrl<Model> {
 		
 	}
 	
-	public List<Model> getAll() {
+	public Set<Model> getAll() {
 		invocation = webTarget.request().buildGet();
 		response = invocation.invoke();
-		return response.readEntity(new GenericType<List<Model>>() {});
+		return response.readEntity(new GenericType<Set<Model>>() {});
 	}
 	
 	public void create() {

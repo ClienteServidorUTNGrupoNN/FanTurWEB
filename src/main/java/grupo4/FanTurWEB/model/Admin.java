@@ -21,12 +21,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Admin extends User {
 	
 	@ManyToOne
-	@JsonIgnoreProperties("listaAdmin")
 	private Admin registradoPor;
-	
-	@OneToMany(mappedBy="registradoPor", fetch=FetchType.EAGER)
-	//@JsonIgnoreProperties("registradoPor")
-	private Set<Admin> listaAdmin;
+
 	
 	public Admin() {
 		super();
@@ -45,24 +41,8 @@ public class Admin extends User {
 		this.registradoPor = registradoPor;
 	}
 
-	public Set<Admin> getListaAdmin() {
-		return listaAdmin;
-		
-	}
-	
-	public Admin registrarAdmin(Admin newAdmin ) {
-		if (this.listaAdmin == null) {
-			this.listaAdmin = new HashSet<Admin>();
-		}
-		newAdmin.setRegistradoPor(this);
-		this.listaAdmin.add(newAdmin);	
-		return newAdmin;
-	}
-	
-	public void setListaAdmin(Set<Admin> listaAdmin) {
-		this.listaAdmin = listaAdmin;
-	}
 
+	
 	public void crearPaquete() {
 		
 	}
