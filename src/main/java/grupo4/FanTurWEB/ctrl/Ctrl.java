@@ -51,11 +51,11 @@ public abstract class Ctrl<Model> {
 
 	protected abstract Class<Model> getClase();
 	
-	public Model get() {
+	public void get() {
 		invocation = webTarget.path(String.valueOf(id)).request().buildGet();
 		response = invocation.invoke();
-		return response.readEntity(this.getClase());
-		//return modelObj;
+		modelObj = response.readEntity(this.getClase());
+		
 	}
 	
 	public List<Model> getAll() {

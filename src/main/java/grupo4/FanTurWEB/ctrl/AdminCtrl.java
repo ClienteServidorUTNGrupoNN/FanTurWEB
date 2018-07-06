@@ -12,6 +12,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -27,9 +28,25 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private static Logger logger = Logger.getLogger(AdminCtrl.class);
+	
+	private String nombre;
+	
+	private List<Admin> administradores;
 
-	@EJB
-	private AdminDao adminEJB;
+//	@EJB
+//	private AdminDao adminEJB;
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@PostConstruct
 	private void init() {
@@ -37,7 +54,7 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 		client = ClientBuilder.newClient();
 		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/admin");
 		modelList = this.getAll();
-		id = 1;
+		administradores = new ArrayList<Admin>();
 	}
 
 	@Override
@@ -88,22 +105,17 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	public Admin getByUser(String user) {
 		invocation = webTarget.path(user).request().buildGet();
 		response = invocation.invoke();
-		modelObj = response.readEntity(Admin.class);
-		return modelObj;
-	
+		administradores = response.readEntity(new GenericType<List<Admin>>() {});
+		Admin admin = administradores.get(0);
+		return admin;
+			
 	}
 	
 	// Tuto's stuff
 	public String crear() {
-//		String nombre = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
-//		Admin adminEnSesion = this.getByUser(nombre);
-//		modelObj.setRegistradoPor(adminEnSesion);
-		id = 1;
-//		modelObj.setRegistradoPor(this.get());
-		
-		Admin temp = this.get();
-		logger.info("lo que devuelve this.get(): " + temp);
-		
+		nombre = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+		Admin adminEnSesion = this.getByUser(nombre);
+		modelObj.setRegistradoPor(adminEnSesion);				
 		modelObj.setRol("ADMINISTRATOR");
 		create();
 		return "/admin/indexAdmin.xhtml";
