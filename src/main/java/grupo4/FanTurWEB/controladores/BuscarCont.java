@@ -2,6 +2,7 @@ package grupo4.FanTurWEB.controladores;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -20,23 +21,36 @@ public class BuscarCont implements Serializable {
 	@EJB
 	private AdminDao adminEJB;
 	
-	private List<Admin> listaAdmin;
+//	private List<Admin> listaAdmin;
+//	
+//	
+//	
+//	public List<Admin> getListaAdmin() {
+//		return listaAdmin;
+//	}
+//	
+//	public void setListaAdmin(List<Admin> listaAdmin) {
+//		this.listaAdmin = listaAdmin;
+//	}
 	
 	
+	private Set<Admin> listaAdmin;
 	
-	public List<Admin> getListaAdmin() {
+	
+	public Set<Admin> getListaAdmin() {
 		return listaAdmin;
 	}
-	
-	public void setListaAdmin(List<Admin> listaAdmin) {
+
+	public void setListaAdmin(Set<Admin> listaAdmin) {
 		this.listaAdmin = listaAdmin;
 	}
-	
-	
-	
+
+
+
+
 	@PostConstruct
 	public void init() {
-		listaAdmin = adminEJB.findAllLista();
+		listaAdmin = adminEJB.findAll();
 	}
 	
 	

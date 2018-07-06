@@ -62,8 +62,8 @@ public class Admin extends User {
 
 	@Override
 	public String toString() {
-		return "Admin [getRegistradoPor()=" + getRegistradoPor() + ", getListaAdmin()=" + getListaAdmin()
-				+ ", toString()=" + super.toString() + "]";
+		return "[ Nombre: " + getNombre() + ", Apellido: " + getApellido()
+				+ ", Usuario: " + getUser() + "]";
 	}
 	
 }

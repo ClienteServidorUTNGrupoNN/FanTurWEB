@@ -1,5 +1,6 @@
 package grupo4.FanTurWEB.ctrl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,8 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import grupo4.FanTurWEB.model.Admin;
+
 
 public abstract class Ctrl<Model> {
 
@@ -19,10 +22,8 @@ public abstract class Ctrl<Model> {
 	protected Invocation invocation;
 	protected Response response;
 	protected Model modelObj;
-	protected String id;
-	protected String afterCreate;
-	protected String afterUpdate;
-	protected String afterDelete;
+	protected List<Model> modelList;
+	protected int id;
 	// afterChabon
 	
 	public Model getModelObj() {
@@ -33,41 +34,49 @@ public abstract class Ctrl<Model> {
 		this.modelObj = modelObj;
 	}
 	
-	public String getId() {
-		return this.id;
-	}
+	public abstract String getId(Model object);
 	
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public Response get() {
-		invocation = webTarget.path(id).request().buildGet();
-		response = invocation.invoke();
-		return response;
-		}
 	
-	public Set<Model> getAll() {
+	public List<Model> getmodelList() {
+		return modelList;
+	}
+
+	public void setmodelList(List<Model> modelList) {
+		this.modelList = modelList;
+	}
+
+	protected abstract Class<Model> getClase();
+	
+	public Model get() {
+		invocation = webTarget.path(String.valueOf(id)).request().buildGet();
+		response = invocation.invoke();
+		return response.readEntity(this.getClase());
+		//return modelObj;
+	}
+	
+	public List<Model> getAll() {
 		invocation = webTarget.request().buildGet();
 		response = invocation.invoke();
-		return response.readEntity(new GenericType<Set<Model>>() {});
+		return response.readEntity(new GenericType<List<Model>>() {});
 	}
 	
-	public String create() {
+	public void create() {
 		invocation = webTarget.request().buildPost(Entity.entity(modelObj, MediaType.APPLICATION_JSON));
 		response = invocation.invoke();
-		return afterCreate;
 	}
 	
-	public String update() {
-		invocation = webTarget.path(id).request().buildPut(Entity.json(modelObj) );
+	public void update(Model object) {
+		invocation = webTarget.path(String.valueOf(this.getId(object))).request().buildPut(Entity.json(modelObj));
 		response = invocation.invoke();
-		return afterUpdate;
 	}
 	
-	public String delete() {
-		invocation = webTarget.path(id).request().buildDelete();
+	public void delete(int id) {
+		//invocation = webTarget.path(String.valueOf(this.getId(object))).request().buildDelete();
+		invocation = webTarget.path(String.valueOf(id)).request().buildDelete();
 		response = invocation.invoke();
-		return afterDelete;
 	}
 }

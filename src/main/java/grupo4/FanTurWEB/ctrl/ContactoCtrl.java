@@ -20,12 +20,7 @@ public class ContactoCtrl extends Ctrl<Ubicacion> implements Serializable{
 		modelObj =  new Ubicacion();
 		client = ClientBuilder.newClient();
 		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/ubicaciones");
-		afterCreate = "pagina adonde ir despues de crear";
-		afterUpdate = "pagina adonde ir despues de actualizar";
-		afterDelete = "pagina adonde ir despues de borrar";
 	}
 	
-	public void modificar() {
-		this.update();
-	}
+
 }

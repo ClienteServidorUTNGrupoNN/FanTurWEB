@@ -38,9 +38,6 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 		modelObj =  new Hotel();
 		client = ClientBuilder.newClient();
 		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/hoteles");
-		afterCreate = "indexAdmin.xhtml";
-		afterUpdate = "indexAdmin.xhtml";
-		afterDelete = "indexAdmin.xhtml";
 		//Aca iniciaizo mis dos atributos agregados
 		ubicacion = new Ubicacion();
 		contacto = new Contacto();
@@ -96,25 +93,9 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 		this.contacto = contacto;
 	}
 	
-	public void buscarHotel() {
-		id = String.valueOf(idHotel);
-		Response respuesta  = this.get();
-		modelObj = respuesta.readEntity(Hotel.class);
-		hoteles2.add(modelObj);
-		
-	}
-	
 	public void empezarGestion(Hotel hotelucho) {
 		modelObj = hotelucho; 
 	}
 	
-	public String modificarHotel() {
-		id = String.valueOf(modelObj.getId());		
-		return this.update();
-	}
-	
-	public String eliminarHotel() {
-		id = String.valueOf(modelObj.getId());
-		return this.delete();
-	}
+
 }

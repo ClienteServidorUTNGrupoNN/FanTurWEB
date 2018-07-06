@@ -27,9 +27,6 @@ public class EventoCtrl extends Ctrl<Evento> implements Serializable{
 		modelObj =  new Evento();
 		client = ClientBuilder.newClient();
 		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/eventos");
-		afterCreate = "indexAdmin.xhtml";
-		afterUpdate = "indexAdmin.xhtml";
-		afterDelete =  "indexAdmin.xhtml";
 		//Inicializo y seteo la ubicacion
 		ubicacion = new Ubicacion();
 		modelObj.setLugar(ubicacion);
@@ -45,6 +42,16 @@ public class EventoCtrl extends Ctrl<Evento> implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String getId(Evento evento) {
+		return String.valueOf(evento.getId());
+	}
+
+	@Override
+	protected Class<Evento> getClase() {
+		return Evento.class;
 	}
 	
 }

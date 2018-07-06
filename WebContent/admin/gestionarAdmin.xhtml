@@ -2,7 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jstl/core">
 
 <h:head>
 
@@ -558,8 +561,15 @@
 										
 										
 										
+									
 										
-										<ui:repeat var="administrador" value="#{buscarBean.listaAdmin}">
+
+										
+										<ui:repeat var="administrador" value="#{adminCtrl.modelList}">
+										
+										
+										
+										
 										<div class="col-sm-12 col-md-6">
 											<div class="card-block">
 												<h2 class="card-number">#{administrador.nombre}</h2>
@@ -583,9 +593,24 @@
 															data-toggle="modal" data-target="#edit-card">
 															<span><i class="fa fa-pencil"></i></span>
 														</button>
-														<button class="btn">
+														<h:form>
+														<h:commandLink  styleClass="btn" actionListener="#{adminCtrl.delete(administrador.id)}" >
+														
+<!-- 														<f:param name="indice" value="#{administrador.id}" id="indice"/> -->
+															
 															<span><i class="fa fa-close"></i></span>
-														</button></li>
+															 
+														</h:commandLink>
+														
+														</h:form>
+														
+													
+														
+														
+														
+														</li>
+
+														
 												</ul>
 											</div>
 											<!-- end card-block -->
