@@ -14,6 +14,8 @@ public interface AdminDao extends Dao<Admin, Integer> {
 	
 	Admin findByUser(String user);
 	
+	List<Admin> findByUserLista(String user);
+	
 	List<Admin> findAllLista();
 	
 }

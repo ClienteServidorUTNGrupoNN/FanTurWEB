@@ -17,6 +17,8 @@ import grupo4.FanTurWEB.model.Admin;
 import grupo4.FanTurWEB.model.Admin_;
 //import grupo4.FanTurWEB.model.Cliente;
 //import grupo4.FanTurWEB.model.Cliente_;
+import grupo4.FanTurWEB.model.Cliente;
+import grupo4.FanTurWEB.model.Cliente_;
 
 @Stateless
 public class AdminDao extends AbstractDao<Admin, Integer>
@@ -74,7 +76,16 @@ public class AdminDao extends AbstractDao<Admin, Integer>
 	}
 	
 	
-	
+	public List<Admin> findByUserLista(String user) {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Admin> cq = cb.createQuery(Admin.class);
+		Root<Admin> c = cq.from(Admin.class);
+		cq.select(c).where(
+				cb.like(c.get(Cliente_.user), user
+				));
+		TypedQuery<Admin> tq = em.createQuery(cq);
+		return tq.getResultList();
+	}
 	
 	public List<Admin> findAllLista() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();

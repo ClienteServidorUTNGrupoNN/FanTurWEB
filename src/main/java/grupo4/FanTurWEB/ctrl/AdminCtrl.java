@@ -49,8 +49,9 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	@PostConstruct
 	private void init() {
 		modelObj = new Admin();
-		client = ClientBuilder.newClient();
-		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/admin");
+		//client = ClientBuilder.newClient();
+		//webTarget = client.target("http://localhost:8080/FanTurWEB/rest/admin");
+		webTarget = webTarget.path("admin");
 		modelObj.setRol("ADMINISTRATOR");
 	}
 

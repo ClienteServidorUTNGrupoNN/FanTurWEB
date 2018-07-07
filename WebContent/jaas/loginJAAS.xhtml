@@ -532,7 +532,9 @@
 								
 								<div class="form-group">
 									
-									<h:inputText value="#{loginBean.usuario}" id="j_username" a:placeholder="Username" class="form-control" required="true" />
+									<h:inputText value="#{loginBean.usuario}" id="j_username" a:placeholder="Username" class="form-control" required="true" requiredMessage="Campo requerido" />
+									
+									<p:message for="j_username" />
 									
 									<!-- 
 									<input type="text" class="form-control" placeholder="Username"
@@ -545,7 +547,9 @@
 
 								<div class="form-group">
 									
-									<h:inputSecret value="#{loginBean.password}" id="j_password" a:placeholder="Password" class="form-control" required="true" />
+									<h:inputSecret value="#{loginBean.password}" id="j_password" a:placeholder="Password" class="form-control" required="true" requiredMessage="Campo requerido" />
+									
+									<p:message for="j_password" />
 									
 									<!-- 
 									<input type="password" class="form-control"
@@ -560,7 +564,7 @@
 									<label><input type="checkbox" /> Remember me</label>
 								</div>
 								
-								<h:commandButton value="Entrar" class="btn btn-orange btn-block" action="loginproxy" />
+								<h:commandButton value="Entrar" class="btn btn-orange btn-block" action="loginProxy" />
 								
 								<!-- 
 								<button type="submit" class="btn btn-orange btn-block">Login</button>

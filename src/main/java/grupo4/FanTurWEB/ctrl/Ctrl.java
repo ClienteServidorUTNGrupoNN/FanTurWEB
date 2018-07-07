@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
@@ -17,8 +18,8 @@ import grupo4.FanTurWEB.model.Admin;
 
 public abstract class Ctrl<Model> {
 
-	protected Client client;
-	protected WebTarget webTarget;
+	protected Client client = ClientBuilder.newClient();
+	protected WebTarget webTarget = client.target("http://localhost:8080/FanTurWEB/rest/");
 	protected Invocation invocation;
 	protected Response response;
 	protected Model modelObj;

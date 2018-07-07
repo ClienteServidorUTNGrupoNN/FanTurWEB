@@ -127,15 +127,15 @@ public class LoginCont implements Serializable {
 				cerrarSesion();
 			}
 			
-			if(clienteEJB.findByUser(usuario).isEmpty() != true) {
+			if(clienteEJB.findByUserLista(usuario).isEmpty() != true) {
 				request.login(usuario, password);
-				clienteResguardo = clienteEJB.findByUser(usuario).get(0);
+				clienteResguardo = clienteEJB.findByUserLista(usuario).get(0);
 				redireccion = "user/cards.xhtml";
 				return redireccion;
 			}else {
-				if(adminEJB.findByUser(usuario).isEmpty() != true) {
+				if(adminEJB.findByUserLista(usuario).isEmpty() != true) {
 					request.login(usuario, password);
-					adminResguardo = adminEJB.findByUser(usuario).get(0);
+					adminResguardo = adminEJB.findByUserLista(usuario).get(0);
 					redireccion = "admin/registrationAdmin.xhtml";
 					return redireccion;
 				}else {

@@ -70,7 +70,7 @@
 		<realm-name>school</realm-name>
 		<form-login-config>
 			<form-login-page>/jaas/loginJAAS.xhtml</form-login-page>
-			<form-error-page>/errorLogin.xhtml</form-error-page>
+			<form-error-page>/jaas/error-page.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 	<!--Definimos el tipo de mecanismo de autenticacion -->
