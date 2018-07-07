@@ -1,5 +1,6 @@
 package grupo4.FanTurWEB.ctrl;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,9 +8,12 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
@@ -49,9 +53,8 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 	@PostConstruct
 	private void init() {
 		modelObj = new Admin();
-		//client = ClientBuilder.newClient();
-		//webTarget = client.target("http://localhost:8080/FanTurWEB/rest/admin");
-		webTarget = webTarget.path("admin");
+		client = ClientBuilder.newClient();
+		webTarget = client.target("http://localhost:8080/FanTurWEB/rest/admin");
 		modelObj.setRol("ADMINISTRATOR");
 	}
 
@@ -115,6 +118,26 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 		this.create();		
 	}
 	
-	
+	public void modificar() {
+		String nombre  = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
+		Admin adminEnSesion = this.getByUser(nombre);
+		this.update(adminEnSesion.getId(), modelObj);
+		
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		try {
+			if (request != null) {
+				request.logout();
+			}
+			externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
+		} catch (IOException e) {
+			logger.error("Logout error: " + e.getMessage());
+		} catch (ServletException e) {
+			logger.error("Logout error: " + e.getMessage());
+		}
+		
+	}
+		
+		
 	
 }
