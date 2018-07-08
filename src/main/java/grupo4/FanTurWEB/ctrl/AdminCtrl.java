@@ -118,24 +118,11 @@ public class AdminCtrl extends Ctrl<Admin> implements Serializable {
 		this.create();		
 	}
 	
-	public void modificar() {
+	public String modificar() {
 		String nombre  = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName();
 		Admin adminEnSesion = this.getByUser(nombre);
-		this.update(adminEnSesion.getId(), modelObj);
-		
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-		try {
-			if (request != null) {
-				request.logout();
-			}
-			externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
-		} catch (IOException e) {
-			logger.error("Logout error: " + e.getMessage());
-		} catch (ServletException e) {
-			logger.error("Logout error: " + e.getMessage());
-		}
-		
+		this.update(adminEnSesion.getId(), modelObj);	
+		return "login.xhtml?faces-redirect=true";
 	}
 		
 		

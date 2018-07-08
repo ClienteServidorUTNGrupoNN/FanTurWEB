@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:t="http://myfaces.apache.org/tomahawk"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jstl/core">
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 
@@ -565,23 +566,23 @@
 										
 
 										
-										<ui:repeat var="administrador" value="#{adminCtrl.modelList}">
+										<ui:repeat var="hotel" value="#{hotelCtrl.modelList}">
 										
 										
 										
 										
 										<div class="col-sm-12 col-md-6">
 											<div class="card-block">
-												<h2 class="card-number">#{administrador.nombre}</h2>
-												<h3 class="card-expiry">#{administrador.apellido}</h3>
+												<h2 class="card-number">#{hotel.nombre}</h2>
+												<h3 class="card-expiry">#{hotel.ubicacion.pais}</h3>
 												<div class="card-name">
-													<h4>#{administrador.rol}</h4>
-													<h3 class="user-name">#{administrador.user}</h3>
+													<h4>#{hotel.contacto.telefono}</h4>
+													
 												</div>
 												<!-- end card-name -->
 
 												<div class="primary-tag">
-													<h4>#{administrador.id}</h4>
+													<h4>#{hotel.id}</h4>
 												</div>
 												<!-- end primary-tag -->
 
@@ -589,14 +590,34 @@
 													<li class="card-img"><img
 														src="resources/images/master-card.png"
 														class="img-responsive" alt="card-img" /></li>
-													<li class="card-links"><button class="btn"
+													<li class="card-links">
+													
+													<!--  button class="btn"
 															data-toggle="modal" data-target="#edit-card">
-															<span><i class="fa fa-pencil"></i></span>
-														</button>
-														<h:form>
-														<h:commandLink  styleClass="btn" actionListener="#{adminCtrl.delete(administrador.id)}" >
+															<span><i class="fa fapencil"></i></span>
+													</button-->
 														
-<!-- 														<f:param name="indice" value="#{administrador.id}" id="indice"/> -->
+														
+														<!-- h:commandButton Class="btn">
+															<f:passThroughAttribute name="data-toogle" value="modal" />
+															<f:passThroughAttribute name="data-target" value="#edit-card" />
+															<f:ajax listener="#{hotelCtrl.editar(hotel.nombre)}"/>
+															<span><i class="fa fa-pencil"></i></span> 
+														</h:commandButotn -->
+														
+														
+														<a class="btn" jsfc="h:commandLink" type="button" action="#{hotelCtrl.editar(hotel.nombre)}">
+														
+														<f:passThroughAttribute name="data-toggle" value="modal" />
+														<f:passThroughAttribute name="data-target" value="#edit-card" />
+														<f:ajax/> 
+														<span><i class="fa fa-pencil"></i></span> 														
+														</a>
+														
+														<h:form>
+														<h:commandLink  styleClass="btn" actionListener="#{hotelCtrl.delete(hotel.id)}" >
+														
+													<!--f:param name="indice" value="#{administrador.id}" id="indice"/ -->
 															
 															<span><i class="fa fa-close"></i></span>
 															 
@@ -796,23 +817,23 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">New Card</h3>
+					<h3 class="modal-title">Nuevo Hotel</h3>
 				</div>
 				<!-- end modal-header -->
 
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label>Card Number</label> <input type="text"
-								class="form-control" placeholder="XXXX XXXX XXXX XXXX" />
+							<h:outputLabel value="Nombre Hotel" /><h:inputText value="#{hotelCtrl.modelObj.nombre}"
+								a:placeholder="Nombre" class="form-control"  />
 						</div>
 						<!-- end form-group -->
 
 						<div class="row">
 							<div class="col-sm-8">
 								<div class="form-group">
-									<label>Cardholder Name</label> <input type="text"
-										class="form-control" placeholder="Your Name" />
+									<h:outputLabel value="Pais" /> <h:inputText value="#{hotelCtrl.modelObj.ubicacion.pais}"
+									a:placeholder="Pais" class="form-control"  />
 								</div>
 								<!-- end form-group -->
 							</div>
@@ -820,8 +841,8 @@
 
 							<div class="col-sm-4">
 								<div class="form-group">
-									<label>Valid Thru</label> <input type="text"
-										class="form-control" placeholder="mm/yy" />
+									<h:outputLabel value="Telefono" /> <h:inputText value="#{hotelCtrl.modelObj.contacto.telefono}"
+										a:placeholder="mm/yy" class="Telefono"  />
 								</div>
 								<!-- end form-group -->
 							</div>
@@ -835,8 +856,9 @@
 								as primary</label>
 						</div>
 						<!-- end checkbox -->
-
-						<button class="btn btn-orange">Add Card</button>
+					<h:form>
+					<h:commandButton value="Crear" class="btn btn-orange" actionListener="#{hotelCtrl.create}"/>
+					</h:form>
 					</form>
 				</div>
 				<!-- end modal-bpdy -->
@@ -847,9 +869,13 @@
 	</div>
 	<!-- end add-card -->
 
+	
+	
 	<div id="edit-card" class="modal custom-modal fade" role="dialog">
 		<div class="modal-dialog">
+		
 			<div class="modal-content">
+			<h:form id="form">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h3 class="modal-title">Edit Card</h3>
@@ -859,23 +885,24 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label>Old Card Number</label> <input type="text"
-								class="form-control" placeholder="XXXX XXXX XXXX 1234"
-								readonly="true" />
+							<h:outputLabel value="nombre" />
+							<h:inputText value="#{hotelCtrl.modelObj.nombre}"
+								a:placeholder="Nombre" class="form-control" 
+								/>
 						</div>
 						<!-- end form-group -->
 
 						<div class="form-group">
-							<label>New Card Number</label> <input type="text"
-								class="form-control" placeholder="XXXX XXXX XXXX XXXX" />
+							<h:outputLabel value="Pais" /> <h:inputText value="#{hotelCtrl.modelObj.ubicacion.pais}"
+								a:placeholder="Pais" class="form-control"  />
 						</div>
 						<!-- end form-group -->
 
 						<div class="row">
 							<div class="col-sm-8">
 								<div class="form-group">
-									<label>Cardholder Name</label> <input type="text"
-										class="form-control" placeholder="Your Name" />
+									<h:outputLabel value="Telefono" /> <h:inputText value="#{hotelCtrl.modelObj.contacto.telefono}"
+										a:placeholder="Tel" class="form-control"  />
 								</div>
 								<!-- end form-group -->
 							</div>
@@ -899,15 +926,20 @@
 						</div>
 						<!-- end checkbox -->
 
-						<button class="btn btn-orange">Save Changes</button>
+						<h:form>
+						<h:commandButton value="Guardar Cambios" class="btn btn-orange" actionListener="#{hotelCtrl.update(hotelCtrl.modelObj.id, modelObj)}" />
+						</h:form>
 					</form>
+					
 				</div>
 				<!-- end modal-bpdy -->
+				</h:form>
 			</div>
 			<!-- end modal-content -->
 		</div>
 		<!-- end modal-dialog -->
 	</div>
+
 	<!-- end edit-card -->
 
 

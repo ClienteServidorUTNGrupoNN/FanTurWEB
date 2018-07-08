@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.ClientBuilder;
@@ -37,6 +38,7 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 		contacto = new Contacto();
 		modelObj.setContacto(contacto);
 		modelObj.setUbicacion(ubicacion);
+		modelList = new ArrayList<Hotel>(this.getAll());
 	}
 
 	public int getIdHotel() {
@@ -80,5 +82,18 @@ public class HotelCtrl extends Ctrl<Hotel> implements Serializable{
 	protected Class<Hotel> getClase() {
 		return Hotel.class;
 	}
+	
+	public Hotel getByNombre(String nombre) {
+		invocation = webTarget.path(nombre).request().buildGet();
+		response = invocation.invoke();
+		Hotel hotel = response.readEntity(Hotel.class);		
+		return hotel;
+			
+	}
+	
+	public void editar(String nombreHotel) {
+		modelObj = this.getByNombre(nombreHotel);
+	}
+	
 	
 }
